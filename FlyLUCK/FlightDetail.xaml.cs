@@ -29,17 +29,38 @@ namespace FlyLUCK
 
 			Frame frame = new Frame();
 			Grid grd = new Grid();
-			Entry txtfield = new Entry { Placeholder = "Enter message" };
-			grd.Children.Add(txtfield);
+			Editor messageText = new Editor();
+			messageText.HorizontalOptions = LayoutOptions.FillAndExpand;
+			messageText.VerticalOptions = LayoutOptions.FillAndExpand;
+			StackLayout lb = new StackLayout();
+			lb.BackgroundColor = Color.Silver;
+			lb.Opacity = 0.7;
+			lb.Padding = 1;
+			lb.Children.Add(messageText);
+			Button send = new Button { Text = "Send" };
+			Button cancel = new Button { Text = "Cancel" };
+			cancel.Clicked += (s, a) => { this.Navigation.PopModalAsync();};
+			send.Clicked += (s, a) => { DisplayAlert("Success", "Your message has been sent!", "OK"); };
+			RowDefinition row = new RowDefinition { Height = 200 };
+			RowDefinition row2 = new RowDefinition();
+			ColumnDefinition col1 = new ColumnDefinition();
+			ColumnDefinition col2 = new ColumnDefinition();
+			grd.RowDefinitions.Add(row);
+			grd.RowDefinitions.Add(row2);
+			grd.ColumnDefinitions.Add(col1);
+			grd.ColumnDefinitions.Add(col2);
+			grd.Children.Add(lb, 0, 0);
+			Grid.SetColumnSpan(lb, 2);
+			grd.Children.Add(send, 0, 1);
+			grd.Children.Add(cancel, 1, 1);
 			frame.Content = grd;
 
 
 			layout.Children.Add(blurImage);
-			layout.Children.Add(frame, new Rectangle(100, 100, 200, 100));
+			layout.Children.Add(frame, new Rectangle(40, 150, 300, 300));
 			sm.Content = layout;
 			this.Navigation.PushModalAsync(sm,false);
 		}
-
 
 		public FlightDetail()
 		{

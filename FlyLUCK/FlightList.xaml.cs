@@ -34,7 +34,6 @@ namespace FlyLUCK
 
 		async void OnTapped(Object sender, EventArgs e)
 		{
-			//DisplayAlert("Alert!", "Something happened", "Bail!");
 			await Navigation.PushModalAsync(new FlightDetail());
 		}
 	}

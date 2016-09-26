@@ -8,7 +8,8 @@ namespace FlyLUCK
 		{
 			InitializeComponent();
 
-			MainPage = new FlightList();
+			//MainPage = new FlightList();
+			MainPage = new HomePage();
 		}
 
 		protected override void OnStart()

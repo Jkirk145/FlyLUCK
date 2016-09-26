@@ -1,5 +1,22 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FlyLUCK.HomePage">
 	<ContentPage.Content>
+		<StackLayout>
+			<StackLayout Padding="100" />
+			<Grid HorizontalOptions="Center" x:Name="mainGrid" RowSpacing="50" ColumnSpacing="50">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+			</Grid>
+
+			<StackLayout x:Name="sl" VerticalOptions="EndAndExpand">
+				<Image Source="Luck_Aviation_Logo3.png" />
+			</StackLayout>
+		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>
