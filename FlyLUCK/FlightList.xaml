@@ -4,8 +4,9 @@
 		xmlns:local="clr-namespace:FlyLUCK;assembly=FlyLUCK"
 		x:Class="FlyLUCK.FlightList">
 	<ContentPage.Content>
-		<StackLayout x:Name="layout" Padding="10">
-			<Image Source="Luck_Aviation_Logo3.png" HorizontalOptions="FillAndExpand" />
+		<StackLayout x:Name = "layout" HorizontalOptions="FillAndExpand" />
+		<StackLayout x:Name="sl" VerticalOptions="EndAndExpand">
+			<Image Source="Luck_Aviation_Logo3.png" />
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>
