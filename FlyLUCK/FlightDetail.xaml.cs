@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Plugin.Messaging;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
@@ -23,6 +23,7 @@ namespace FlyLUCK
 
 		void SendMessage(object sender, EventArgs e)
 		{
+
 			SendMessage sm = new FlyLUCK.SendMessage();
 			AbsoluteLayout layout = new AbsoluteLayout();
 			Image blurImage = new Image { Source = "blur.png" };
@@ -40,7 +41,21 @@ namespace FlyLUCK
 			Button send = new Button { Text = "Send" };
 			Button cancel = new Button { Text = "Cancel" };
 			cancel.Clicked += (s, a) => { this.Navigation.PopModalAsync();};
-			send.Clicked += (s, a) => { DisplayAlert("Success", "Your message has been sent!", "OK"); };
+			send.Clicked += (sndr, eva) => { 
+				var smsMessage = MessagingPlugin.SmsMessenger;
+				if (smsMessage.CanSendSms)
+				{
+					try
+					{
+						smsMessage.SendSms("+18042480700", messageText.Text);
+						DisplayAlert("Success", "Your message has been sent!: " + messageText.Text, "OK");
+					}
+					catch (Exception ex)
+					{
+						DisplayAlert("ERROR!", ex.ToString(), "Close");
+					}
+				}
+			};
 			RowDefinition row = new RowDefinition { Height = 200 };
 			RowDefinition row2 = new RowDefinition();
 			ColumnDefinition col1 = new ColumnDefinition();

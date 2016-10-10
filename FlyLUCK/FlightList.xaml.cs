@@ -36,6 +36,11 @@ namespace FlyLUCK
 		{
 			await Navigation.PushModalAsync(new FlightDetail());
 		}
+
+		void ClosePage(Object sender, EventArgs e)
+		{
+			this.Navigation.PopModalAsync();
+		}
 	}
 }
 
