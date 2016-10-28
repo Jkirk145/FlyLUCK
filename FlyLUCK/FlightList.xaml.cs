@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Plugin.Messaging;
 using Xamarin.Forms;
 
 namespace FlyLUCK
@@ -26,9 +26,9 @@ namespace FlyLUCK
 			cv1.GestureRecognizers.Add(tapped);
 			cv2.GestureRecognizers.Add(tapped);
 
+
 			layout.Children.Add(cv1);
 			layout.Children.Add(cv2);
-
 
 		}
 
@@ -41,6 +41,7 @@ namespace FlyLUCK
 		{
 			this.Navigation.PopModalAsync();
 		}
+
 	}
 }
 

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Plugin.Messaging;
 using Xamarin.Forms;
 
 namespace FlyLUCK
@@ -33,6 +33,7 @@ namespace FlyLUCK
 			aboutUs.HorizontalOptions = LayoutOptions.Center;
 
 			openMyFlights.Clicked += OpenMyFlights;
+			openCalendar.Clicked += DoSendMessage;
 
 			StackLayout sl1 = new StackLayout();
 			StackLayout sl2 = new StackLayout();
@@ -60,6 +61,12 @@ namespace FlyLUCK
 		async void OpenMyFlights(object sender, EventArgs e)
 		{
 			await Navigation.PushModalAsync(new FlightList());
+			return;
+		}
+
+		async void DoSendMessage(object sender, EventArgs e)
+		{
+			await Navigation.PushModalAsync(new CalendarPage());
 			return;
 		}
 	}

@@ -1,4 +1,5 @@
 ﻿using System;
+using Foundation;
 using UIKit;
 using Xamarin.Forms.Platform.iOS;
 
@@ -21,6 +22,21 @@ namespace FlyLUCK.iOS
 			{
 				parent.ModalPresentationStyle = ModalPresentationStyle;
 			}
+		}
+	}
+
+	public class Messaging
+	{
+		public Messaging()
+		{ }
+
+		public void SendMessage(string msg)
+		{
+			var smsTo = NSUrl.FromString("sms:" + msg);
+			UIApplication.SharedApplication.OpenUrl(smsTo);
+
+
+
 		}
 	}
 }

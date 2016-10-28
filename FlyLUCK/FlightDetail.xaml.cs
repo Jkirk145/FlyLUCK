@@ -41,8 +41,12 @@ namespace FlyLUCK
 			Button send = new Button { Text = "Send" };
 			Button cancel = new Button { Text = "Cancel" };
 			cancel.Clicked += (s, a) => { this.Navigation.PopModalAsync();};
-			send.Clicked += (sndr, eva) => { 
-				var smsMessage = MessagingPlugin.SmsMessenger;
+			send.Clicked += (sndr, eva) => {
+				var messenger = DependencyService.Get<IMessenger>();
+				messenger.SendMessage("18042480700", "This is a test");
+				//var msg = new Messaging();
+				//msg.SendMessage("18042480700");
+				/*var smsMessage = MessagingPlugin.SmsMessenger;
 				if (smsMessage.CanSendSms)
 				{
 					try
@@ -54,7 +58,7 @@ namespace FlyLUCK
 					{
 						DisplayAlert("ERROR!", ex.ToString(), "Close");
 					}
-				}
+				}*/
 			};
 			RowDefinition row = new RowDefinition { Height = 200 };
 			RowDefinition row2 = new RowDefinition();
