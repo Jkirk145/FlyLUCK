@@ -12,11 +12,20 @@ namespace FlyLUCK
 		StackLayout _stacker;
 		Label _flightinfo;
 		Button _closepage;
+		Button _SelectDate;
 
 		void ClosePage(Object sender, EventArgs e)
 		{
 			this.Navigation.PopModalAsync();
 		}
+
+		void SelectDate(Object sender, EventArgs e)
+		{
+			_calendarView.SelectedDate = new DateTime(2016, 11, 8);
+
+			_calendarView.SelectedDate = new DateTime(2016, 11, 26);
+		}
+
 
 		public CalendarPage()
 		{
@@ -34,6 +43,10 @@ namespace FlyLUCK
 				Image = "close.png"
 			};
 			_closepage.Clicked += ClosePage;
+
+			_SelectDate = new Button { Text = "Do It" };
+			_SelectDate.Clicked += SelectDate;
+
 			_stacker.Padding = 30;
 			Content = _stacker;
 
@@ -47,11 +60,13 @@ namespace FlyLUCK
 			_stacker.Children.Add(_closepage);
 			_stacker.Children.Add(_calendarView);
 			_stacker.Children.Add(_flightinfo);
+			_stacker.Children.Add(_SelectDate);
 
 			_calendarView.DateSelected += (object sender, DateTime e) =>
 			{
 				_flightinfo.Text = "Date Was Selected" + e.ToString("d");
 			};
+
 		}
 	}
 }

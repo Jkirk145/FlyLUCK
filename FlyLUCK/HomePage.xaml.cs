@@ -51,6 +51,7 @@ namespace FlyLUCK
 
 			sl4.Children.Add(aboutUs);
 			sl4.Children.Add(new Label { Text = "About the Flight Department", FontSize = 12, HorizontalTextAlignment = TextAlignment.Center });
+
 			mainGrid.Children.Add(sl1, 0, 0);
 			mainGrid.Children.Add(sl2, 1, 0);
 			mainGrid.Children.Add(sl3, 0, 1);
