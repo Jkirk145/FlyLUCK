@@ -1,11 +1,53 @@
 ﻿using System;
 using Xamarin.Forms;
+using RoundedBoxView.Forms.Plugin.Abstractions;
 
 namespace FlyLUCK
 {
 	public class DetailViewLabel : Label
 	{
 		
+	}
+
+	public class CalendarBadge : Frame
+	{
+		Grid dayGrid;
+		StackLayout layout;
+		Label _date;
+		RoundedBoxView.Forms.Plugin.Abstractions.RoundedBoxView _box;
+
+		public CalendarBadge(string day, Color c)
+		{
+			Padding = 0;
+
+			_date = new Label();
+
+			layout = new StackLayout();
+
+			_date.Text = day;
+			_date.TextColor = Color.Black;
+			_date.BackgroundColor = Color.FromHex("cdcdcd");
+			_date.HorizontalTextAlignment = TextAlignment.Center;
+
+			layout.Children.Add(_date);
+			//layout.Children.Add(new Label { Text = "X", TextColor = c, BackgroundColor=Color.Silver, HorizontalTextAlignment=TextAlignment.Center });
+			_box = new RoundedBoxView.Forms.Plugin.Abstractions.RoundedBoxView();
+			_box.BackgroundColor = c;
+			_box.BorderThickness = 0;
+			_box.WidthRequest = 20;
+			_box.HeightRequest = 20;
+			_box.CornerRadius = 40;
+			layout.Children.Add(_box);
+
+			Content = layout;
+			HasShadow = false;
+			WidthRequest = 30;
+			HeightRequest = 60;
+			BackgroundColor = Color.Transparent;
+		}
+
+
+
 	}
 
 	public class CardView : Frame

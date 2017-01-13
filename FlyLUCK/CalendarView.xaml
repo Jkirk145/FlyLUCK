@@ -15,9 +15,9 @@
 				<Label x:Name="MonthName" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="1" />
 				<Button x:Name="cmdNext" Image="next.png" Grid.Row="0" Grid.Column="2" />
 			</Grid>
-			<Grid x:Name="MonthGrid" BackgroundColor="Silver">
+			<Grid x:Name="MonthGrid" BackgroundColor="White">
 				<Grid.RowDefinitions>
-					<RowDefinition />
+					<RowDefinition Height="30" />
 					<RowDefinition />
 					<RowDefinition />
 					<RowDefinition />

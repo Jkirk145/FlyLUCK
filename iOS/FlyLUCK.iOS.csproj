@@ -142,6 +142,12 @@
     <Reference Include="XLabs.Forms.iOS">
       <HintPath>..\packages\XLabs.Forms.2.0.5782\lib\Xamarin.iOS10\XLabs.Forms.iOS.dll</HintPath>
     </Reference>
+    <Reference Include="RoundedBoxView.Forms.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugins.Forms.RoundedBoxView.1.0.0.7\lib\Xamarin.iOS10\RoundedBoxView.Forms.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="RoundedBoxView.Forms.Plugin.iOSUnified">
+      <HintPath>..\packages\Xam.Plugins.Forms.RoundedBoxView.1.0.0.7\lib\Xamarin.iOS10\RoundedBoxView.Forms.Plugin.iOSUnified.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FlyLUCK\FlyLUCK.csproj">
@@ -187,6 +193,8 @@
     <BundleResource Include="Resources\calendar.png" />
     <BundleResource Include="Resources\newflight2.png" />
     <BundleResource Include="Resources\information.png" />
+    <BundleResource Include="Resources\next.png" />
+    <BundleResource Include="Resources\prev.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="urbanairship">

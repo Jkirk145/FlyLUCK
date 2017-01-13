@@ -6,6 +6,7 @@ using Foundation;
 using UIKit;
 using XLabs.Forms;
 using XLabs.Forms.Controls;
+using RoundedBoxView.Forms.Plugin.iOSUnified;
 
 
 namespace FlyLUCK.iOS
@@ -19,6 +20,7 @@ namespace FlyLUCK.iOS
 			global::Xamarin.Forms.Forms.Init();
 			Xamarin.FormsMaps.Init();
 
+			RoundedBoxViewRenderer.Init();
 
 			LoadApplication(new App());
 
