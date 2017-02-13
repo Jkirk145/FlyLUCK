@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FlyLUCK.SearchPlaces">
+	<ContentPage.Content>
+		<StackLayout x:Name="layout" Padding="20">
+			<SearchBar x:Name="search">
+			</SearchBar>
+			<ListView x:Name="placelist">
+			    <ListView.ItemTemplate>
+			      <DataTemplate>
+			        <TextCell Text="{Binding description}" />
+			      </DataTemplate>
+			    </ListView.ItemTemplate>
+			  </ListView>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

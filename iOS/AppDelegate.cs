@@ -7,6 +7,9 @@ using UIKit;
 using XLabs.Forms;
 using XLabs.Forms.Controls;
 using RoundedBoxView.Forms.Plugin.iOSUnified;
+using Syncfusion.SfCalendar.iOS;
+using Syncfusion.SfCalendar.XForms.iOS;
+
 
 
 namespace FlyLUCK.iOS
@@ -19,6 +22,8 @@ namespace FlyLUCK.iOS
 
 			global::Xamarin.Forms.Forms.Init();
 			Xamarin.FormsMaps.Init();
+
+			new SfCalendarRenderer();
 
 			RoundedBoxViewRenderer.Init();
 

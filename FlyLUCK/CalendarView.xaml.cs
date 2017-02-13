@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using System.Net.Http;
 using System.Threading.Tasks;
 using RoundedBoxView.Forms.Plugin.Abstractions;
+using Newtonsoft.Json;
 
 namespace FlyLUCK
 {
@@ -17,6 +18,8 @@ namespace FlyLUCK
 
 		private String _flights = "[{\n\t\"ORIGIN\": \"KOFP\",\n\t\"LOCALLEAVE\": \"2017-01-01 09:30:00.0\",\n\t\"DEST\": \"MYAM\"\n}, {\n\t\"ORIGIN\": \"MYAM\",\n\t\"LOCALLEAVE\": \"2017-01-01 12:00:00.0\",\n\t\"DEST\": \"KILM\"\n}, {\n\t\"ORIGIN\": \"KILM\",\n\t\"LOCALLEAVE\": \"2017-01-01 14:00:00.0\",\n\t\"DEST\": \"KOFP\"\n}, {\n\t\"ORIGIN\": \"KOFP\",\n\t\"LOCALLEAVE\": \"2017-01-01 08:00:00.0\",\n\t\"DEST\": \"MYAM\"\n}, {\n\t\"ORIGIN\": \"MYAM\",\n\t\"LOCALLEAVE\": \"2017-01-01 10:30:00.0\",\n\t\"DEST\": \"KILM\"\n}, {\n\t\"ORIGIN\": \"KILM\",\n\t\"LOCALLEAVE\": \"2017-01-01 12:45:00.0\",\n\t\"DEST\": \"KOFP\"\n}, {\n\t\"ORIGIN\": \"KOFP\",\n\t\"LOCALLEAVE\": \"2017-01-05 07:00:00.0\",\n\t\"DEST\": \"KJYO\"\n}, {\n\t\"ORIGIN\": \"KJYO\",\n\t\"LOCALLEAVE\": \"2017-01-05 07:45:00.0\",\n\t\"DEST\": \"KMKE\"\n}, {\n\t\"ORIGIN\": \"KMKE\",\n\t\"LOCALLEAVE\": \"2017-01-05 14:00:00.0\",\n\t\"DEST\": \"KJYO\"\n}, {\n\t\"ORIGIN\": \"KJYO\",\n\t\"LOCALLEAVE\": \"2017-01-05 16:45:00.0\",\n\t\"DEST\": \"KOFP\"\n}, {\n\t\"ORIGIN\": \"KOFP\",\n\t\"LOCALLEAVE\": \"2017-01-06 11:00:00.0\",\n\t\"DEST\": \"KHEF\"\n}, {\n\t\"ORIGIN\": \"KHEF\",\n\t\"LOCALLEAVE\": \"2017-01-06 14:30:00.0\",\n\t\"DEST\": \"KOFP\"\n}, {\n\t\"ORIGIN\": \"KOFP\",\n\t\"LOCALLEAVE\": \"2017-01-06 17:00:00.0\",\n\t\"DEST\": \"KGVL\"\n}, {\n\t\"ORIGIN\": \"KGVL\",\n\t\"LOCALLEAVE\": \"2017-01-06 18:30:00.0\",\n\t\"DEST\": \"KOFP\"\n}, {\n\t\"ORIGIN\": \"KOFP\",\n\t\"LOCALLEAVE\": \"2017-01-08 15:30:00.0\",\n\t\"DEST\": \"KGVL\"\n}, {\n\t\"ORIGIN\": \"KGVL\",\n\t\"LOCALLEAVE\": \"2017-01-08 17:00:00.0\",\n\t\"DEST\": \"KOFP\"\n}, {\n\t\"ORIGIN\": \"KOFP\",\n\t\"LOCALLEAVE\": \"2017-01-09 08:00:00.0\",\n\t\"DEST\": \"KOKV\"\n}, {\n\t\"ORIGIN\": \"KOKV\",\n\t\"LOCALLEAVE\": \"2017-01-09 16:00:00.0\",\n\t\"DEST\": \"KOFP\"\n}, {\n\t\"ORIGIN\": \"KOFP\",\n\t\"LOCALLEAVE\": \"2017-01-10 10:00:00.0\",\n\t\"DEST\": \"KFTW\"\n}, {\n\t\"ORIGIN\": \"KFTW\",\n\t\"LOCALLEAVE\": \"2017-01-11 11:30:00.0\",\n\t\"DEST\": \"KOFP\"\n}, {\n\t\"ORIGIN\": \"KOFP\",\n\t\"LOCALLEAVE\": \"2017-01-11 15:30:00.0\",\n\t\"DEST\": \"KTEB\"\n}, {\n\t\"ORIGIN\": \"KTEB\",\n\t\"LOCALLEAVE\": \"2017-01-11 16:40:00.0\",\n\t\"DEST\": \"KOFP\"\n}, {\n\t\"ORIGIN\": \"KOFP\",\n\t\"LOCALLEAVE\": \"2017-01-13 08:45:00.0\",\n\t\"DEST\": \"KTEB\"\n}, {\n\t\"ORIGIN\": \"KTEB\",\n\t\"LOCALLEAVE\": \"2017-01-13 10:00:00.0\",\n\t\"DEST\": \"KOFP\"\n}, {\n\t\"ORIGIN\": \"KOFP\",\n\t\"LOCALLEAVE\": \"2017-01-16 07:00:00.0\",\n\t\"DEST\": \"KMTV\"\n}, {\n\t\"ORIGIN\": \"KMTV\",\n\t\"LOCALLEAVE\": \"2017-01-16 08:00:00.0\",\n\t\"DEST\": \"KOFP\"\n}, {\n\t\"ORIGIN\": \"KMTV\",\n\t\"LOCALLEAVE\": \"2017-01-18 12:00:00.0\",\n\t\"DEST\": \"KOFP\"\n}, {\n\t\"ORIGIN\": \"KOFP\",\n\t\"LOCALLEAVE\": \"2017-01-18 11:00:00.0\",\n\t\"DEST\": \"KMTV\"\n}, {\n\t\"ORIGIN\": \"KOFP\",\n\t\"LOCALLEAVE\": \"2017-01-18 14:00:00.0\",\n\t\"DEST\": \"KTTA\"\n}, {\n\t\"ORIGIN\": \"KTTA\",\n\t\"LOCALLEAVE\": \"2017-01-18 15:15:00.0\",\n\t\"DEST\": \"KSEF\"\n}, {\n\t\"ORIGIN\": \"KSEF\",\n\t\"LOCALLEAVE\": \"2017-01-18 17:15:00.0\",\n\t\"DEST\": \"KTTA\"\n}, {\n\t\"ORIGIN\": \"KTTA\",\n\t\"LOCALLEAVE\": \"2017-01-19 14:00:00.0\",\n\t\"DEST\": \"KOFP\"\n}, {\n\t\"ORIGIN\": \"KOFP\",\n\t\"LOCALLEAVE\": \"2017-01-22 12:00:00.0\",\n\t\"DEST\": \"KSEF\"\n}, {\n\t\"ORIGIN\": \"KSEF\",\n\t\"LOCALLEAVE\": \"2017-01-22 17:00:00.0\",\n\t\"DEST\": \"KOFP\"\n}, {\n\t\"ORIGIN\": \"KOFP\",\n\t\"LOCALLEAVE\": \"2017-01-23 07:30:00.0\",\n\t\"DEST\": \"KPIA\"\n}, {\n\t\"ORIGIN\": \"KPIA\",\n\t\"LOCALLEAVE\": \"2017-01-23 13:00:00.0\",\n\t\"DEST\": \"KSPA\"\n}, {\n\t\"ORIGIN\": \"KSPA\",\n\t\"LOCALLEAVE\": \"2017-01-23 16:00:00.0\",\n\t\"DEST\": \"KOFP\"\n}, {\n\t\"ORIGIN\": \"KOFP\",\n\t\"LOCALLEAVE\": \"2017-01-24 15:00:00.0\",\n\t\"DEST\": \"KRST\"\n}, {\n\t\"ORIGIN\": \"KRST\",\n\t\"LOCALLEAVE\": \"2017-01-24 17:00:00.0\",\n\t\"DEST\": \"KOFP\"\n}, {\n\t\"ORIGIN\": \"KOFP\",\n\t\"LOCALLEAVE\": \"2017-01-24 15:00:00.0\",\n\t\"DEST\": \"KRST\"\n}, {\n\t\"ORIGIN\": \"KOFP\",\n\t\"LOCALLEAVE\": \"2017-01-27 14:30:00.0\",\n\t\"DEST\": \"KRST\"\n}, {\n\t\"ORIGIN\": \"KRST\",\n\t\"LOCALLEAVE\": \"2017-01-27 17:00:00.0\",\n\t\"DEST\": \"KOFP\"\n}]";
 		//private String _flights = "";
+
+		private List<Flight> flights;
 
 		public CalendarView()
 		{
@@ -54,6 +57,7 @@ namespace FlyLUCK
 				p.DisplayAlert("ERROR!", ex.ToString(), "Close");
 
 			}
+
 			return flightdata;
 		}
 
@@ -75,7 +79,7 @@ namespace FlyLUCK
 			DateTime lastDayOfMonth = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
 
 			//_flights = GetFlightData(firstDayOfMonth.ToString("MM-dd-yyyy"), lastDayOfMonth.ToString("MM-dd-yyyy")).ToString();
-
+			var flightobj = JsonConvert.DeserializeObject<List<Flight>>(_flights);
 
 			colPos = (int)firstDayOfMonth.DayOfWeek;
 
