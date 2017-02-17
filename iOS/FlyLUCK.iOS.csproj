@@ -152,13 +152,13 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfCalendar.iOS">
-      <HintPath>Syncfusion.SfCalendar.iOS.dll</HintPath>
+      <HintPath>..\..\Syncfusion\15.1.0.33\Xamarin\lib\ios-unified\Syncfusion.SfCalendar.iOS.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfCalendar.XForms">
-      <HintPath>Syncfusion.SfCalendar.XForms.dll</HintPath>
+      <HintPath>..\..\Syncfusion\15.1.0.33\Xamarin\lib\ios-unified\Syncfusion.SfCalendar.XForms.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfCalendar.XForms.iOS">
-      <HintPath>Syncfusion.SfCalendar.XForms.iOS.dll</HintPath>
+      <HintPath>..\..\Syncfusion\15.1.0.33\Xamarin\lib\ios-unified\Syncfusion.SfCalendar.XForms.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

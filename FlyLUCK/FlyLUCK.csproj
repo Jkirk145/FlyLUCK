@@ -34,9 +34,6 @@
     <EmbeddedResource Include="SendMessage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="CalendarView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="SearchPlaces.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -69,9 +66,6 @@
     </Compile>
     <Compile Include="Messaging.cs" />
     <Compile Include="IMessenger.cs" />
-    <Compile Include="CalendarView.xaml.cs">
-      <DependentUpon>CalendarView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SearchPlaces.xaml.cs">
       <DependentUpon>SearchPlaces.xaml</DependentUpon>
     </Compile>
@@ -131,9 +125,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfCalendar.XForms">
-      <HintPath>Syncfusion.SfCalendar.XForms.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>..\packages\Xamarin.Forms.2.3.3.180\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
@@ -145,6 +136,9 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Maps">
       <HintPath>..\packages\Xamarin.Forms.Maps.2.3.3.180\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\Xamarin.Forms.Maps.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfCalendar.XForms">
+      <HintPath>..\..\Syncfusion\15.1.0.33\Xamarin\lib\pcl\Syncfusion.SfCalendar.XForms.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

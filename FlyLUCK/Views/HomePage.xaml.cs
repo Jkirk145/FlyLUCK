@@ -17,21 +17,26 @@ namespace FlyLUCK
 			Button newFlight = new Button { Image = "submit.png" };
 			Button aboutUs = new Button { Image = "information.png" };
 
+
 			openCalendar.HeightRequest = 60;
 			openCalendar.VerticalOptions = LayoutOptions.Center;
 			openCalendar.HorizontalOptions = LayoutOptions.Center;
+			openCalendar.BackgroundColor = Color.Transparent;
 
 			openMyFlights.HeightRequest = 60;
 			openMyFlights.VerticalOptions = LayoutOptions.Center;
 			openMyFlights.HorizontalOptions = LayoutOptions.Center;
+			openMyFlights.BackgroundColor = Color.Transparent;
 
 			newFlight.HeightRequest = 60;
 			newFlight.VerticalOptions = LayoutOptions.Center;
 			newFlight.HorizontalOptions = LayoutOptions.Center;
+			newFlight.BackgroundColor = Color.Transparent;
 
 			aboutUs.HeightRequest = 60;
 			aboutUs.VerticalOptions = LayoutOptions.Center;
 			aboutUs.HorizontalOptions = LayoutOptions.Center;
+			aboutUs.BackgroundColor = Color.Transparent;
 
 			openMyFlights.Clicked += OpenMyFlights;
 			openCalendar.Clicked += OpenCalendar;

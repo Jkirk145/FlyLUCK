@@ -9,12 +9,12 @@
 				<StackLayout Padding="20">
 					<Grid Padding="30" HorizontalOptions="Center" VerticalOptions="Center" x:Name="mainGrid" RowSpacing="50" ColumnSpacing="50">
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="*" />
-							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="60" />
+							<ColumnDefinition Width="60" />
 						</Grid.ColumnDefinitions>
 						<Grid.RowDefinitions>
-							<RowDefinition Height="*"/>
-							<RowDefinition Height="*"/>
+							<RowDefinition Height="60"/>
+							<RowDefinition Height="60"/>
 						</Grid.RowDefinitions>
 					</Grid>
 				</StackLayout>
