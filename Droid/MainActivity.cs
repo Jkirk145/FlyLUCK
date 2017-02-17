@@ -10,17 +10,17 @@ using Android.OS;
 
 namespace FlyLUCK.Droid
 {
-	[Activity(Label = "FlyLUCK.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+	[Activity(Label = "FlyLUCK.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
-		protected override void OnCreate(Bundle savedInstanceState)
+		protected override void OnCreate(Bundle bundle)
 		{
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;
 
-			base.OnCreate(savedInstanceState);
+			base.OnCreate(bundle);
 
-			global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+			Xamarin.Forms.Forms.Init(this, bundle);
 
 			LoadApplication(new App());
 		}
