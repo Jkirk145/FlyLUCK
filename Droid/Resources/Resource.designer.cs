@@ -1993,8 +1993,8 @@ namespace FlyLUCK.Droid
 			// aapt resource value: 0x7f020053
 			public const int design_snackbar_background = 2130837587;
 			
-			// aapt resource value: 0x7f0200b7
-			public const int focused = 2130837687;
+			// aapt resource value: 0x7f0200b8
+			public const int focused = 2130837688;
 			
 			// aapt resource value: 0x7f020054
 			public const int ic_audiotrack = 2130837588;
@@ -2273,28 +2273,31 @@ namespace FlyLUCK.Droid
 			public const int myflights2 = 2130837679;
 			
 			// aapt resource value: 0x7f0200b0
-			public const int newflight2 = 2130837680;
+			public const int newflight = 2130837680;
 			
 			// aapt resource value: 0x7f0200b1
-			public const int next = 2130837681;
-			
-			// aapt resource value: 0x7f0200b6
-			public const int notification_template_icon_bg = 2130837686;
+			public const int newflight35 = 2130837681;
 			
 			// aapt resource value: 0x7f0200b2
-			public const int prev = 2130837682;
+			public const int next = 2130837682;
 			
-			// aapt resource value: 0x7f0200b8
-			public const int selected = 2130837688;
+			// aapt resource value: 0x7f0200b7
+			public const int notification_template_icon_bg = 2130837687;
 			
 			// aapt resource value: 0x7f0200b3
-			public const int sendMessage = 2130837683;
+			public const int prev = 2130837683;
+			
+			// aapt resource value: 0x7f0200b9
+			public const int selected = 2130837689;
 			
 			// aapt resource value: 0x7f0200b4
-			public const int sendMessage2 = 2130837684;
+			public const int sendMessage = 2130837684;
 			
 			// aapt resource value: 0x7f0200b5
-			public const int submit = 2130837685;
+			public const int sendMessage2 = 2130837685;
+			
+			// aapt resource value: 0x7f0200b6
+			public const int submit = 2130837686;
 			
 			static Drawable()
 			{

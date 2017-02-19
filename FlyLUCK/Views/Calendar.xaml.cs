@@ -59,10 +59,27 @@ namespace FlyLUCK
 			layout.Children.Add(calendar);
 
 			//Button bar ******************************************************
+			Button newFlightRequest = new Button();
 
-			Button closePage = new Button { Text = "Close", Image = "closePage.png" };
+			Button closePage = new Button { Image = "closePage.png" };
+			closePage.BackgroundColor = Color.White;
+			newFlightRequest.BackgroundColor = Color.White;
 
-			Button newFlightRequest = new Button { Text = "Request Flight", Image = "submit.png" };
+			if (Device.OS == TargetPlatform.Android)
+			{
+				newFlightRequest.Image = "newflight35.png";
+
+				newFlightRequest.HeightRequest = 35;
+				newFlightRequest.WidthRequest = 35;
+
+				closePage.HeightRequest = 35;
+				closePage.WidthRequest = 35;
+
+				closePage.BorderColor = Color.Transparent;
+				newFlightRequest.BorderColor = Color.Transparent;
+			}
+			else if(Device.OS == TargetPlatform.iOS)
+				newFlightRequest.Image = "submit.png";
 
 
 			newFlightRequest.Clicked += SendFlightRequest;

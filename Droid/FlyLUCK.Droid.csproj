@@ -129,12 +129,13 @@
     <AndroidResource Include="Resources\drawable\map_marker.png" />
     <AndroidResource Include="Resources\drawable\message.png" />
     <AndroidResource Include="Resources\drawable\myflights2.png" />
-    <AndroidResource Include="Resources\drawable\newflight2.png" />
     <AndroidResource Include="Resources\drawable\next.png" />
     <AndroidResource Include="Resources\drawable\prev.png" />
     <AndroidResource Include="Resources\drawable\sendMessage.png" />
     <AndroidResource Include="Resources\drawable\sendMessage2.png" />
     <AndroidResource Include="Resources\drawable\submit.png" />
+    <AndroidResource Include="Resources\drawable\newflight.png" />
+    <AndroidResource Include="Resources\drawable\newflight35.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

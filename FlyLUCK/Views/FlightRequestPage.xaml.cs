@@ -130,7 +130,6 @@ namespace FlyLUCK
 				numPax.Items.Add(i.ToString());
 
 
-
 			RowDefinition row1 = new RowDefinition();
 			RowDefinition row2 = new RowDefinition();
 			RowDefinition row3 = new RowDefinition();
@@ -219,15 +218,29 @@ namespace FlyLUCK
 
 
 
-
-
-
 			//Button bar ******************************************************
 
-			Button closePage = new Button { Text = "Close", Image = "closePage.png" };
+			Button submitFlightRequest = new Button();
 
-			Button submitFlightRequest = new Button { Text = "Request Flight", Image = "submit.png" };
+			Button closePage = new Button { Image = "closePage.png" };
+			closePage.BackgroundColor = Color.White;
+			submitFlightRequest.BackgroundColor = Color.White;
 
+			if (Device.OS == TargetPlatform.Android)
+			{
+				submitFlightRequest.Image = "newflight35.png";
+
+				submitFlightRequest.HeightRequest = 35;
+				submitFlightRequest.WidthRequest = 35;
+
+				closePage.HeightRequest = 35;
+				closePage.WidthRequest = 35;
+
+				closePage.BorderColor = Color.Transparent;
+				submitFlightRequest.BorderColor = Color.Transparent;
+			}
+			else if (Device.OS == TargetPlatform.iOS)
+				submitFlightRequest.Image = "submit.png";
 
 			submitFlightRequest.Clicked += SendRequest;
 			closePage.Clicked += ClosePage_Clicked;
