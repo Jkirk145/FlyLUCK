@@ -37,7 +37,7 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidLinkSkip></AndroidLinkSkip>
     <AndroidSigningKeyPass></AndroidSigningKeyPass>
-    <AndroidSupportedAbis>x86</AndroidSupportedAbis>
+    <AndroidSupportedAbis>x86;armeabi-v7a</AndroidSupportedAbis>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>

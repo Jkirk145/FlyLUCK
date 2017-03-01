@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using System.Net.Http;
+using Newtonsoft.Json;
 
 
 //Google Places API Key
@@ -78,22 +79,39 @@ namespace FlyLUCK
 				DisplayAlert("ERROR!", "The highlighted fields are required!", "Close");
 				return;
 			}
+
+
+			FlyLUCK.Request request = new Request();
+			request.Subject = "New Flight Request [Mobile - TEST]";
+			request.Destination = search.Text;
+			request.DateDepart = start.Date.ToString();
+			request.TimeDepart = startTime.Time.ToString();
+			request.DateReturn = end.Date.ToString();
+			request.TimeReturn = endTime.Time.ToString();
+			request.Purpose = purpose.Text;
+			request.Requestor = requestor.Text;
+			request.RentalCar = (rentalCar.IsToggled ? "Y" : "N");
+			request.Specials = specials.Text;
+
+			string body = "{" + JsonConvert.SerializeObject(request) + "}";
+
 			HttpClient client = new HttpClient();
 
-			string subject = "Mobile Flight Request: " + search.Text;
-			string body = "Flight Request Form\nDestination: " + search.Text +
+
+			/*string body = "Flight Request Form\nDestination: " + search.Text +
 							"\nDepart: " + start.Date.ToString() + "\nArrive: " + end.Date.ToString() +
 																	   "\nRental Car: " + (rentalCar.IsToggled ? "Y" : "N") +
 																	   "\n# of Passengers: " + numPax.Items[numPax.SelectedIndex] +
 																	   "\nSpecial Requests: " + specials.Text +
 							"\nPurpose of trip: " + purpose.Text +
-																	   "\nRequestor: " + requestor.Text;
+																	   "\nRequestor: " + requestor.Text;*/
 
 			client.MaxResponseContentBufferSize = 512000;
 
-			var uri = new Uri(String.Format(Constants.ServiceUrl + "/sendmail?subject=" + subject + "&body=" + body, string.Empty));
+
 			try
 			{
+				var uri = new Uri(String.Format(Constants.ServiceUrl + "/sendmail?body=" + body, string.Empty));
 				var response = client.GetAsync(uri).Result;
 				if (response.IsSuccessStatusCode)
 				{
@@ -102,8 +120,7 @@ namespace FlyLUCK
 			}
 			catch (Exception ex)
 			{
-				Page p = new Page();
-				p.DisplayAlert("ERROR!", ex.ToString(), "Close");
+				DisplayAlert("ERROR!", ex.ToString(), "Close");
 
 			}
 		}

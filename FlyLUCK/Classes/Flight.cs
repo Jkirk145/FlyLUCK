@@ -20,4 +20,20 @@ namespace FlyLUCK
 		public Flight() { }
 
 	}
+
+	[Preserve(AllMembers = true)]
+	public class Request
+	{
+		public string Subject { get; set;}
+		public string Destination { get; set; }
+		public string DateDepart { get; set;}
+		public string TimeDepart { get; set; }
+		public string DateReturn { get; set;}
+		public string TimeReturn { get; set;}
+		public string Requestor { get; set; }
+		public string NumPax { get; set;}
+		public string RentalCar { get; set;}
+		public string Specials { get; set;}
+		public string Purpose { get; set;}
+	}
 }
