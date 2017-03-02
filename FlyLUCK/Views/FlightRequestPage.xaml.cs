@@ -115,7 +115,7 @@ namespace FlyLUCK
 				var response = client.GetAsync(uri).Result;
 				if (response.IsSuccessStatusCode)
 				{
-					
+
 				}
 			}
 			catch (Exception ex)
@@ -192,10 +192,10 @@ namespace FlyLUCK
 			//start.SetValue();
 
 			grid.Children.Add(search, 0, 0);
-			grid.Children.Add(new Label{ Text = "Departs:", VerticalOptions=LayoutOptions.Center }, 0, 1);
+			grid.Children.Add(new Label { Text = "Departs:", VerticalOptions = LayoutOptions.Center }, 0, 1);
 			grid.Children.Add(start, 1, 1);
 			grid.Children.Add(startTime, 2, 1);
-			grid.Children.Add(new Label{ Text = "Returns:", VerticalOptions=LayoutOptions.Center }, 0, 2);
+			grid.Children.Add(new Label { Text = "Returns:", VerticalOptions = LayoutOptions.Center }, 0, 2);
 			grid.Children.Add(end, 1, 2);
 			grid.Children.Add(endTime, 2, 2);
 			grid.Children.Add(new Label { Text = "Requestor:", VerticalOptions = LayoutOptions.Center }, 0, 3);
@@ -229,7 +229,7 @@ namespace FlyLUCK
 			Grid.SetColumnSpan(grid.Children[15], 3);
 
 			//layout.Children.Add(grid);
-			ScrollView sv = new ScrollView { Orientation = ScrollOrientation.Vertical, HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand  };
+			ScrollView sv = new ScrollView { Orientation = ScrollOrientation.Vertical, HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand };
 			sv.Content = grid;
 			layout.Children.Add(sv);
 
