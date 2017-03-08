@@ -5,14 +5,17 @@
 		x:Class="FlyLUCK.FlightList">
 	<ContentPage.Content>
 		<StackLayout Padding="20">
-			<Button Image="closePage.png" Clicked="ClosePage" HorizontalOptions="StartAndExpand" HeightRequest="35" WidthRequest="35" />
 			<Label Text="For Demonstration Only!" FontSize="24" />
 			<StackLayout Padding="40">
 				<Label Text="My Flights" VerticalOptions="Center" HorizontalTextAlignment="Center" FontSize="24" />
 			</StackLayout>
 			<StackLayout x:Name = "layout" HorizontalOptions="FillAndExpand" />
-			<StackLayout x:Name="sl" VerticalOptions="EndAndExpand">
-				<Image Source="Luck_Aviation_Logo3.png" />
+			<StackLayout x:Name="footer" Padding="20" VerticalOptions="EndAndExpand">
+				<Grid x:Name="buttonbar" HorizontalOptions="FillAndExpand">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="35" />
+					</Grid.RowDefinitions>
+				</Grid>
 			</StackLayout>
 		</StackLayout>
 	</ContentPage.Content>

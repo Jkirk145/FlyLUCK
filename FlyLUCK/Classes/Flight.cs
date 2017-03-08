@@ -11,6 +11,7 @@ namespace FlyLUCK
 		public int LEGID { get; set; }
 		public int TRIPNUM { get; set; }
 		public string LOCALLEAVE { get; set; }
+		public string LOCALARRIVE { get; set; }
 		public string ORIGIN { get; set; }
 		public string FROMAIRPORTNAME { get; set; }
 		public string DEST { get; set; }

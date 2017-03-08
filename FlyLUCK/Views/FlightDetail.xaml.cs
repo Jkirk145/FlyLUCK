@@ -199,6 +199,7 @@ namespace FlyLUCK
 			Grid.SetColumnSpan(pilot2Phone, 2);
 
 			//Passengers Label ************************************************
+
 			Label paxLabel = new Label { Text = "Passenger List" };
 			paxLabel.HorizontalTextAlignment = TextAlignment.Start;
 			paxLabel.VerticalTextAlignment = TextAlignment.Center;
@@ -215,6 +216,7 @@ namespace FlyLUCK
 			Grid.SetColumnSpan(lineLabel2, 5);
 
 			//Destination Info Section ****************************************
+
 			Label destLabel = new Label { Text = "Destination Information" };
 			destLabel.HorizontalTextAlignment = TextAlignment.Start;
 			destLabel.FontSize = 16;
@@ -253,6 +255,7 @@ namespace FlyLUCK
 			DetailGrid.Children.Add(openMaps, 3, 12);
 			Grid.SetColumnSpan(openMaps, 2);*/
 			//Map *************************************************************
+
 			var map = new Map(
 			MapSpan.FromCenterAndRadius(
 					new Position(39.0682111, -77.5547217), Distance.FromMiles(1.0)))
@@ -279,7 +282,7 @@ namespace FlyLUCK
 			Grid.SetColumnSpan(map, 2);
 
 			//Button bar ******************************************************
-			Button cancelFlight = new Button { Image = "cancelFlight.png", Text = "Delete" };
+			//Button cancelFlight = new Button { Image = "cancelFlight.png", Text = "Delete" };
 			Button closePage = new Button { Text = "Close", Image = "closePage.png" };
 			Button sendCrewMessage = new Button { Text = "Message", Image = "sendMessage2.png" };
 
@@ -288,7 +291,7 @@ namespace FlyLUCK
 
 			DetailGrid.Children.Add(closePage, 0, 14);
 			DetailGrid.Children.Add(sendCrewMessage, 2, 14);
-			DetailGrid.Children.Add(cancelFlight, 4, 14);
+			//DetailGrid.Children.Add(cancelFlight, 4, 14);
 
 
 		}

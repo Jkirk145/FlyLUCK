@@ -30,6 +30,17 @@ namespace FlyLUCK
 			layout.Children.Add(cv1);
 			layout.Children.Add(cv2);
 
+			//Button bar ******************************************************
+
+			Button submitFlightRequest = new Button();
+
+			Button closePage = new Button { Image = "closePage.png" };
+			closePage.BackgroundColor = Color.Transparent;
+
+			closePage.Clicked += ClosePage_Clicked;
+
+			buttonbar.Children.Add(closePage, 0, 0);
+
 		}
 
 		async void OnTapped(Object sender, EventArgs e)
@@ -37,7 +48,7 @@ namespace FlyLUCK
 			await Navigation.PushModalAsync(new FlightDetail());
 		}
 
-		void ClosePage(Object sender, EventArgs e)
+		private void ClosePage_Clicked(object sender, EventArgs e)
 		{
 			this.Navigation.PopModalAsync();
 		}

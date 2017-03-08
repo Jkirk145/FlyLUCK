@@ -30,6 +30,9 @@ namespace FlyLUCK
 
 		private void ClosePage_Clicked(object sender, EventArgs e)
 		{
+			col.Clear();
+			_loadedMonths.Clear();
+			col = null;
 			this.Navigation.PopModalAsync();
 		}
 
@@ -46,8 +49,6 @@ namespace FlyLUCK
 
 			_loadedMonths = new List<string>();
 
-
-
 			calendar = new SfCalendar();
 			calendar.ShowInlineEvents = true;
 			calendar.ShowNavigationButtons = true;
@@ -62,8 +63,8 @@ namespace FlyLUCK
 			Button newFlightRequest = new Button();
 
 			Button closePage = new Button { Image = "closePage.png" };
-			closePage.BackgroundColor = Color.White;
-			newFlightRequest.BackgroundColor = Color.White;
+			closePage.BackgroundColor = Color.Transparent;
+			newFlightRequest.BackgroundColor = Color.Transparent;
 
 			if (Device.OS == TargetPlatform.Android)
 			{
@@ -89,7 +90,7 @@ namespace FlyLUCK
 			buttonbar.Children.Add(closePage, 0, 0);
 			buttonbar.Children.Add(newFlightRequest, 1, 0);
 
-
+			calendar.MoveToDate = DateTime.Now;
 		}
 
 		protected override void OnAppearing()
@@ -103,58 +104,16 @@ namespace FlyLUCK
 
 		private void LoadFlights(DateTime currDate)
 		{
-			string startDate = currDate.Month.ToString() + "/1/" + currDate.Year.ToString();
-			string endDate = currDate.Month.ToString() + "/" + DateTime.DaysInMonth(currDate.Year, currDate.Month).ToString() + "/" + currDate.Year.ToString();
-			indicator.IsRunning = true;
+			vm.IsLoading = true;
 
-			_flightdata = GetFlightData(startDate, endDate);
-			_holddata = GetHoldData(startDate, endDate);
-			_mxdata = GetMxData(startDate, endDate);
+			string startDate = currDate.Month.ToString() + "-1-" + currDate.Year.ToString();
+			string endDate = currDate.Month.ToString() + "-" + DateTime.DaysInMonth(currDate.Year, currDate.Month).ToString() + "-" + currDate.Year.ToString();
 
+			Task<bool> success = GetData(startDate, endDate);
 
 
-			/*if (_flightdata != null)
-			{
-				var flightobj = JsonConvert.DeserializeObject<List<Flight>>(_flightdata);
-				foreach (Flight f in flightobj)
-				{
-					CalendarInlineEvent ev = new CalendarInlineEvent();
-					ev.Subject = f.ORIGIN + "-" + f.DEST;
-					ev.StartTime = Convert.ToDateTime(f.LOCALLEAVE);
-					ev.EndTime = Convert.ToDateTime(f.LOCALLEAVE).AddHours(1);
-					ev.Color = Color.FromHex("68A0ED");
-					col.Add(ev);
-				}
-				
-			}
-
-			if (_holddata != null)
-			{
-				var holdobj = JsonConvert.DeserializeObject<List<Hold>>(_holddata);
-				foreach (Hold h in holdobj)
-				{
-					CalendarInlineEvent ev = new CalendarInlineEvent();
-					ev.Subject = "HOLD";
-					ev.StartTime = Convert.ToDateTime(h.LEGLOCALDATE);
-					ev.EndTime = Convert.ToDateTime(h.LEGLOCALDATE).AddHours(12);
-					ev.Color = Color.FromHex("6AED68");
-					col.Add(ev);
-				}
-			}
-
-			if (_mxdata != null)
-			{
-				var mxobj = JsonConvert.DeserializeObject<List<Maint>>(_mxdata);
-				foreach (Maint m in mxobj)
-				{
-					CalendarInlineEvent ev = new CalendarInlineEvent();
-					ev.Subject = "MAINTENANCE";
-					ev.StartTime = Convert.ToDateTime(m.LEGLOCALDATE);
-					ev.EndTime = Convert.ToDateTime(m.LEGLOCALDATE).AddHours(12);
-					ev.Color = Color.FromHex("FF8033");
-					col.Add(ev);
-				}
-			}*/
+			//_holddata = GetHoldData(startDate, endDate);
+			//_mxdata = GetMxData(startDate, endDate);
 
 			//calendar.DataSource = col;
 
@@ -173,26 +132,85 @@ namespace FlyLUCK
 			}
 
 			calendar.MoveToDate = e.args.CurrentValue;
-
-
 		}
-		public string GetHoldData(string start, string end)
+
+		public async Task<bool> GetData(string start, string end)
 		{
-			Task<string> holdData = DoHttpRequest(new Uri(String.Format(Constants.ServiceUrl + "/getholds?start=" + start + "&end=" + end, string.Empty)), 2);
-			return holdData.ToString();
+			HttpClient client = new HttpClient();
+			client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", _authheader);
+			client.MaxResponseContentBufferSize = 512000;
+			Uri flightUrl = new Uri(String.Format(Constants.ServiceUrl + "/getflights?start=" + start + "&end=" + end, string.Empty));
+			Uri holdUrl = new Uri(String.Format(Constants.ServiceUrl + "/getholds?start=" + start + "&end=" + end, string.Empty));
+			Uri mxUrl = new Uri(String.Format(Constants.ServiceUrl + "/getmx?start=" + start + "&end=" + end, string.Empty));
+
+			try
+			{
+				HttpContent responseContent;
+				var response = await client.GetAsync(flightUrl);
+				if (response.IsSuccessStatusCode)
+				{
+					responseContent = response.Content;
+					_flightdata = responseContent.ReadAsStringAsync().Result;
+					var flightobj = JsonConvert.DeserializeObject<List<Flight>>(_flightdata);
+					foreach (Flight f in flightobj)
+					{
+						CalendarInlineEvent ev = new CalendarInlineEvent();
+						ev.Subject = f.ORIGIN + "-" + f.DEST;
+						ev.StartTime = Convert.ToDateTime(f.LOCALLEAVE);
+						ev.EndTime = Convert.ToDateTime(f.LOCALARRIVE);
+						ev.Color = Color.FromHex("68A0ED");
+						col.Add(ev);
+					}
+				}
+				/*response = await client.GetAsync(holdUrl);
+				if (response.IsSuccessStatusCode)
+				{
+					responseContent = response.Content;
+					_holddata = responseContent.ReadAsStringAsync().Result;
+					var holdobj = JsonConvert.DeserializeObject<List<Hold>>(_holddata);
+					foreach (Hold h in holdobj)
+					{
+						CalendarInlineEvent ev = new CalendarInlineEvent();
+						ev.Subject = "HOLD";
+						ev.StartTime = Convert.ToDateTime(h.LEGLOCALDATE);
+						ev.EndTime = Convert.ToDateTime(h.LEGLOCALDATE).AddHours(12);
+						ev.Color = Color.FromHex("6AED68");
+						col.Add(ev);
+					}
+				}
+				response = await client.GetAsync(mxUrl);
+				if (response.IsSuccessStatusCode)
+				{
+					responseContent = response.Content;
+					_mxdata = responseContent.ReadAsStringAsync().Result;
+					var mxobj = JsonConvert.DeserializeObject<List<Maint>>(_mxdata);
+					foreach (Maint m in mxobj)
+					{
+						CalendarInlineEvent ev = new CalendarInlineEvent();
+						ev.Subject = "MAINTENANCE";
+						ev.StartTime = Convert.ToDateTime(m.LEGLOCALDATE);
+						ev.EndTime = Convert.ToDateTime(m.LEGLOCALDATE).AddHours(24);
+						ev.Color = Color.FromHex("FF8033");
+						col.Add(ev);
+					}
+				}*/
+				calendar.DataSource = col;
+				calendar.MoveToDate = Convert.ToDateTime(start);
+				vm.IsLoading = false;
+				return true;
+			}
+			catch (Exception e)
+			{
+				Page p = new Page();
+
+				await p.DisplayAlert("ERROR!", e.ToString(), "Close");
+				return false;
+			}
 		}
 
-		public string GetMxData(string start, string end)
-		{
-			Task<string> mxData = DoHttpRequest(new Uri(String.Format(Constants.ServiceUrl + "/getmx?start=" + start + "&end=" + end, string.Empty)), 3);
-			return mxData.ToString();
-		}
 
-		public string GetFlightData(string start, string end)
-		{
-			Task<string> flightdata = DoHttpRequest(new Uri(String.Format(Constants.ServiceUrl + "/getflights?start=" + start + "&end=" + end, string.Empty)), 1);
-			return flightdata.ToString();
-		}
+
+
 
 		public async Task<string> DoHttpRequest(Uri uri, int flag)
 		{
