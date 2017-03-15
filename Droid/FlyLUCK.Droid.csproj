@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>FlyLUCK.Droid</RootNamespace>
     <AssemblyName>FlyLUCK.Droid</AssemblyName>
-    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -86,13 +86,13 @@
       <HintPath>..\packages\Xamarin.Forms.2.3.3.180\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfCalendar.Android">
-      <HintPath>..\..\Syncfusion\15.1.0.33\Xamarin\lib\android\Syncfusion.SfCalendar.Android.dll</HintPath>
+      <HintPath>..\..\Calendar\android\Syncfusion.SfCalendar.Android.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfCalendar.XForms.Android">
-      <HintPath>..\..\Syncfusion\15.1.0.33\Xamarin\lib\android\Syncfusion.SfCalendar.XForms.Android.dll</HintPath>
+      <HintPath>..\..\Calendar\android\Syncfusion.SfCalendar.XForms.Android.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfCalendar.XForms">
-      <HintPath>..\..\Syncfusion\15.1.0.33\Xamarin\lib\android\Syncfusion.SfCalendar.XForms.dll</HintPath>
+      <HintPath>..\..\Calendar\android\Syncfusion.SfCalendar.XForms.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

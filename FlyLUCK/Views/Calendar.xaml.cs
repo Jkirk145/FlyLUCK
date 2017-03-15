@@ -126,13 +126,13 @@ namespace FlyLUCK
 
 			if (!_loadedMonths.Contains(currDate.Month.ToString()))
 			{
-				_loadedMonths.Add(currDate.Month.ToString());
 				LoadFlights(currDate);
-
+				_loadedMonths.Add(currDate.Month.ToString());
 			}
 
 			calendar.MoveToDate = e.args.CurrentValue;
 		}
+
 
 		public async Task<bool> GetData(string start, string end)
 		{
@@ -146,6 +146,7 @@ namespace FlyLUCK
 			try
 			{
 				HttpContent responseContent;
+				//get all the flights for the given dates
 				var response = await client.GetAsync(flightUrl);
 				if (response.IsSuccessStatusCode)
 				{
@@ -162,7 +163,8 @@ namespace FlyLUCK
 						col.Add(ev);
 					}
 				}
-				/*response = await client.GetAsync(holdUrl);
+				//next, get holds
+				response = await client.GetAsync(holdUrl);
 				if (response.IsSuccessStatusCode)
 				{
 					responseContent = response.Content;
@@ -178,7 +180,7 @@ namespace FlyLUCK
 						col.Add(ev);
 					}
 				}
-				response = await client.GetAsync(mxUrl);
+				/*response = await client.GetAsync(mxUrl);
 				if (response.IsSuccessStatusCode)
 				{
 					responseContent = response.Content;
@@ -194,8 +196,13 @@ namespace FlyLUCK
 						col.Add(ev);
 					}
 				}*/
+				if (Device.OS == TargetPlatform.Android)
+				{
+					layout.Children.Remove(calendar);
+					layout.Children.Add(calendar);
+
+				}
 				calendar.DataSource = col;
-				calendar.MoveToDate = Convert.ToDateTime(start);
 				vm.IsLoading = false;
 				return true;
 			}
@@ -207,9 +214,6 @@ namespace FlyLUCK
 				return false;
 			}
 		}
-
-
-
 
 
 		public async Task<string> DoHttpRequest(Uri uri, int flag)
@@ -236,7 +240,7 @@ namespace FlyLUCK
 								CalendarInlineEvent ev = new CalendarInlineEvent();
 								ev.Subject = f.ORIGIN + "-" + f.DEST;
 								ev.StartTime = Convert.ToDateTime(f.LOCALLEAVE);
-								ev.EndTime = Convert.ToDateTime(f.LOCALLEAVE).AddHours(1);
+								ev.EndTime = Convert.ToDateTime(f.LOCALARRIVE);
 								ev.Color = Color.FromHex("68A0ED");
 								col.Add(ev);
 							}
@@ -274,7 +278,7 @@ namespace FlyLUCK
 					calendar.DataSource = col;
 					//indicator.IsRunning = false;
 					vm.IsLoading = false;
-					return "baller";
+					return "success";
 				}
 			}
 			catch (Exception ex)

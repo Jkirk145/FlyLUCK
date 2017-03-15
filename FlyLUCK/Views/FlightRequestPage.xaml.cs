@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 
 //Google Places API Key
@@ -72,12 +73,30 @@ namespace FlyLUCK
 			return isValid;
 		}
 
-		private void SendRequest(object sender, EventArgs e)
+		private async void ProcessRequest(object sender, EventArgs e)
+		{
+			ActivityView av = new ActivityView();
+			await this.Navigation.PushModalAsync(av);
+			bool success = await SendRequest();
+			await this.Navigation.PopModalAsync();
+			if (success)
+			{
+				await DisplayAlert("Success!", "Your request was sent! The flight department will contact you to finalize your trip.", "OK");
+				await this.Navigation.PopModalAsync();
+			}
+			else
+			{
+				await DisplayAlert("Uh oh....", "There was an error processing your request! Please try again.", "OK");
+			}
+
+		}
+
+		private async Task<bool> SendRequest()
 		{
 			if (!ValidateForm())
 			{
-				DisplayAlert("ERROR!", "The highlighted fields are required!", "Close");
-				return;
+				await DisplayAlert("ERROR!", "The highlighted fields are required!", "Close");
+				return false;
 			}
 
 
@@ -116,14 +135,15 @@ namespace FlyLUCK
 				var response = client.GetAsync(uri).Result;
 				if (response.IsSuccessStatusCode)
 				{
-
+					return true;
 				}
 			}
 			catch (Exception ex)
 			{
-				DisplayAlert("ERROR!", ex.ToString(), "Close");
-
+				await DisplayAlert("ERROR!", ex.ToString(), "Close");
+				return false;
 			}
+			return false;
 		}
 
 		public FlightRequestPage()
@@ -262,7 +282,7 @@ namespace FlyLUCK
 			else if (Device.OS == TargetPlatform.iOS)
 				submitFlightRequest.Image = "submit.png";
 
-			submitFlightRequest.Clicked += SendRequest;
+			submitFlightRequest.Clicked += ProcessRequest;
 			closePage.Clicked += ClosePage_Clicked;
 
 

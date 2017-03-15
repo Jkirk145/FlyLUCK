@@ -52,6 +52,9 @@
     <EmbeddedResource Include="Views\FlightRequestPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\ActivityView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -92,6 +95,9 @@
     <Compile Include="ViewModels\CalendarViewModel.cs" />
     <Compile Include="Views\FlightRequestPage.xaml.cs">
       <DependentUpon>FlightRequestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityView.xaml.cs">
+      <DependentUpon>ActivityView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -138,7 +144,7 @@
       <HintPath>..\packages\Xamarin.Forms.Maps.2.3.3.193\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\Xamarin.Forms.Maps.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfCalendar.XForms">
-      <HintPath>..\..\Syncfusion\15.1.0.33\Xamarin\lib\pcl\Syncfusion.SfCalendar.XForms.dll</HintPath>
+      <HintPath>..\..\Calendar\pcl\Syncfusion.SfCalendar.XForms.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
