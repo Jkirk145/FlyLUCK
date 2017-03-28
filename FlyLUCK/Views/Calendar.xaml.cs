@@ -23,6 +23,7 @@ namespace FlyLUCK
 		private string _authdata = "";
 		private string _authheader = "";
 		private List<string> _loadedMonths = null;
+		Label selectedDate = new Label();
 
 		SfCalendar calendar;
 		CalendarEventCollection col = new CalendarEventCollection();
@@ -51,6 +52,8 @@ namespace FlyLUCK
 
 			calendar = new SfCalendar();
 			calendar.ShowInlineEvents = true;
+			calendar.SelectionMode = SelectionMode.SingleSelection;
+			//calendar.OnCalendarTapped += DisplayFlight;
 			calendar.ShowNavigationButtons = true;
 			calendar.MonthChanged += LoadNewMonth;
 
@@ -60,8 +63,12 @@ namespace FlyLUCK
 			layout.Children.Add(calendar);
 
 			//Button bar ******************************************************
-			Button newFlightRequest = new Button();
+			selectedDate.Text = "Select a date...";
+			selectedDate.FontAttributes = FontAttributes.Italic;
+			selectedDate.TextColor = Color.Silver;
 
+
+			Button newFlightRequest = new Button();
 			Button closePage = new Button { Image = "closePage.png" };
 			closePage.BackgroundColor = Color.Transparent;
 			newFlightRequest.BackgroundColor = Color.Transparent;
@@ -86,11 +93,18 @@ namespace FlyLUCK
 			newFlightRequest.Clicked += SendFlightRequest;
 			closePage.Clicked += ClosePage_Clicked;
 
-
+			//buttonbar.Children.Add(selectedDate, 0, 0);
 			buttonbar.Children.Add(closePage, 0, 0);
 			buttonbar.Children.Add(newFlightRequest, 1, 0);
+			//Grid.SetColumnSpan(selectedDate, 2);
 
 			calendar.MoveToDate = DateTime.Now;
+		}
+
+		private void DisplayFlight(object sender, CalendarTappedEventArgs e)
+		{
+			//DisplayAlert("YO!", e.selectedAppointment.Subject, "Close");
+			selectedDate.Text = e.selectedAppointment.Subject;
 		}
 
 		protected override void OnAppearing()
@@ -156,7 +170,14 @@ namespace FlyLUCK
 					foreach (Flight f in flightobj)
 					{
 						CalendarInlineEvent ev = new CalendarInlineEvent();
-						ev.Subject = f.ORIGIN + "-" + f.DEST;
+						string from = f.FROMCITY;
+						string to = f.TOCITY;
+						if (from.Length > 10)
+							from = from.Substring(0, 10) + "...";
+						if (to.Length > 10)
+							to = to.Substring(0, 10) + "...";
+						
+						ev.Subject = from + " - " + to;
 						ev.StartTime = Convert.ToDateTime(f.LOCALLEAVE);
 						ev.EndTime = Convert.ToDateTime(f.LOCALARRIVE);
 						ev.Color = Color.FromHex("68A0ED");

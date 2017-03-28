@@ -19,7 +19,7 @@
 					</Grid>
 				</StackLayout>
 				<StackLayout x:Name="sl" VerticalOptions="EndAndExpand">
-					<Image Source="Luck_Aviation_Logo3.png" />
+					<Image Source="Luck_Aviation_Logo4.png" />
 				</StackLayout>
 			</StackLayout>
 

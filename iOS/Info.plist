@@ -6,12 +6,6 @@
 	<string>FlyLUCK</string>
 	<key>CFBundleName</key>
 	<string>FlyLUCK</string>
-	<key>CFBundleIdentifier</key>
-	<string>com.luckcompanies.FlyLUCK</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -40,5 +34,11 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcons.appiconset</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.luckcompanies.flyluck</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.9</string>
+	<key>CFBundleVersion</key>
+	<string>2.0</string>
 </dict>
 </plist>

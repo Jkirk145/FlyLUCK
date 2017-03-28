@@ -16,6 +16,8 @@ namespace FlyLUCK
 		public string FROMAIRPORTNAME { get; set; }
 		public string DEST { get; set; }
 		public string TOAIRPORTNAME { get; set; }
+		public string FROMCITY { get; set; }
+		public string TOCITY { get; set; }
 
 
 		public Flight() { }

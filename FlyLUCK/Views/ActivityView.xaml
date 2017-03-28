@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FlyLUCK.ActivityView">
+<ContentPage Opacity="0.5" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FlyLUCK.ActivityView">
 	<ContentPage.Content>
-		<StackLayout x:Name="layout" VerticalOptions="CenterAndExpand">
-			<Label Text="Please wait while your request is being processed...." ></Label>
+		<StackLayout x:Name="layout" VerticalOptions="CenterAndExpand" Padding="30">
+			<Label HorizontalTextAlignment="Center" Text="Please wait while your request is being processed...." ></Label>
 			<ActivityIndicator IsRunning="true"></ActivityIndicator>
 		</StackLayout>
 	</ContentPage.Content>

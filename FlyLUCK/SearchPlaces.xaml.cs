@@ -36,6 +36,12 @@ namespace FlyLUCK
 			search.TextChanged += Search_TextChanged;
 		}
 
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+			search.Focus();
+		}
+
 		void Search_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			if (search.Text.Length > 3)

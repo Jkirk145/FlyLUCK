@@ -75,29 +75,33 @@ namespace FlyLUCK
 
 		private async void ProcessRequest(object sender, EventArgs e)
 		{
-			ActivityView av = new ActivityView();
-			await this.Navigation.PushModalAsync(av);
-			bool success = await SendRequest();
-			await this.Navigation.PopModalAsync();
-			if (success)
+
+			if (!ValidateForm())
 			{
-				await DisplayAlert("Success!", "Your request was sent! The flight department will contact you to finalize your trip.", "OK");
-				await this.Navigation.PopModalAsync();
+				await DisplayAlert("ERROR!", "The highlighted fields are required!", "Close");
 			}
 			else
 			{
-				await DisplayAlert("Uh oh....", "There was an error processing your request! Please try again.", "OK");
-			}
 
+				ActivityView av = new ActivityView();
+				await this.Navigation.PushModalAsync(av);
+				bool success = await SendRequest();
+				await this.Navigation.PopModalAsync();
+				if (success)
+				{
+					await DisplayAlert("Success!", "Your request was sent! The flight department will contact you to finalize your trip.", "OK");
+					await this.Navigation.PopModalAsync();
+				}
+				else
+				{
+					await DisplayAlert("Uh oh....", "There was an error processing your request! Please try again.", "OK");
+				}
+			}
 		}
 
 		private async Task<bool> SendRequest()
 		{
-			if (!ValidateForm())
-			{
-				await DisplayAlert("ERROR!", "The highlighted fields are required!", "Close");
-				return false;
-			}
+
 
 
 			FlyLUCK.Request request = new Request();
