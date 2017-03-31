@@ -47,7 +47,7 @@
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
-    <CodesignProvision>baf4c5e9-5b90-49e6-b4ab-e69688eecb66</CodesignProvision>
+    <CodesignProvision>a29217a2-fe6c-4212-a4a6-80d76e461571</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <Optimize>true</Optimize>
@@ -161,6 +161,12 @@
     <Reference Include="Syncfusion.SfCalendar.XForms.iOS">
       <HintPath>..\..\Syncfusion\15.1.0.33\Xamarin\lib\ios-unified\Syncfusion.SfCalendar.XForms.iOS.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.Settings.Abstractions">
+      <HintPath>..\packages\Xam.Plugins.Settings.2.5.4\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings">
+      <HintPath>..\packages\Xam.Plugins.Settings.2.5.4\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FlyLUCK\FlyLUCK.csproj">
@@ -174,6 +180,8 @@
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\flyLUCK_icon57.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\flyLUCK_icon114.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\flyLUCK_icon120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\flyLUCK_icon152.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\flyLUCK_icon167.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -191,6 +199,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Messenger.cs" />
+    <Compile Include="Helpers\Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Luck_Aviation_Logo3.png" />
@@ -210,6 +219,11 @@
     <BundleResource Include="Resources\prev.png" />
     <BundleResource Include="Resources\submit.png" />
     <BundleResource Include="Resources\Luck_Aviation_Logo4.png" />
+    <BundleResource Include="Resources\login_background.JPG" />
+    <BundleResource Include="Resources\login_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

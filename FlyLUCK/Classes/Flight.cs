@@ -18,8 +18,12 @@ namespace FlyLUCK
 		public string TOAIRPORTNAME { get; set; }
 		public string FROMCITY { get; set; }
 		public string TOCITY { get; set; }
-
-
+		public string FBONAME { get; set; }
+		public string FBOADDRESS1 { get; set; }
+		public string FBOCITY { get; set; }
+		public string FBOSTATE { get; set; }
+		public string FBOPHONE { get; set; }
+		public string FBOZIP { get; set; }
 		public Flight() { }
 
 	}
@@ -38,5 +42,30 @@ namespace FlyLUCK
 		public string RentalCar { get; set;}
 		public string Specials { get; set;}
 		public string Purpose { get; set;}
+	}
+
+	[Preserve(AllMembers = true)]
+	public class Crew
+	{
+		public string NAME { get; set; }
+		public string CELLULAR { get; set; }
+	}
+
+	[Preserve(AllMembers = true)]
+	public class Passenger
+	{
+		public string PAXNAME { get; set; }
+		public string CELLPHONE { get; set; }
+	}
+
+	[Preserve(AllMembers = true)]
+	public class User
+	{
+		public string PAXID { get; set; }
+		public string CREWID { get; set; }
+		public string NAME { get; set; }
+		public string EMAIL { get; set; }
+		public string DEPT { get; set; }
+
 	}
 }

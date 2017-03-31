@@ -15,7 +15,7 @@ namespace FlyLUCK.iOS
 
 		public bool SendMessage(string to, string msg)
 		{
-			return UIApplication.SharedApplication.OpenUrl(new Foundation.NSUrl("sms:18042480700"));
+			return UIApplication.SharedApplication.OpenUrl(new Foundation.NSUrl(to));
 		}
 	}
 }

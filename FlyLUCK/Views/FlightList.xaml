@@ -5,11 +5,12 @@
 		x:Class="FlyLUCK.FlightList">
 	<ContentPage.Content>
 		<StackLayout Padding="20">
-			<Label Text="For Demonstration Only!" FontSize="24" />
 			<StackLayout Padding="40">
 				<Label Text="My Flights" VerticalOptions="Center" HorizontalTextAlignment="Center" FontSize="24" />
 			</StackLayout>
-			<StackLayout x:Name = "layout" HorizontalOptions="FillAndExpand" />
+				<ScrollView Orientation="Vertical" x:Name="flightList">
+					<StackLayout x:Name = "layout" HorizontalOptions="FillAndExpand" />
+				</ScrollView>
 			<StackLayout x:Name="footer" Padding="20" VerticalOptions="EndAndExpand">
 				<Grid x:Name="buttonbar" HorizontalOptions="FillAndExpand">
 					<Grid.RowDefinitions>

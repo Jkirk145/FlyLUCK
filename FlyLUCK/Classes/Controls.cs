@@ -65,14 +65,14 @@ namespace FlyLUCK
 	{
 		private string _origin = "";
 		private string _destination = "";
-		private DateTime _date = new DateTime();
+		private string _date = "";
 		private string _time = "";
 
 		public CardView()
 		{
 		}
 
-		public CardView(string origin, string destination, DateTime deptDate, string deptTime)
+		public CardView(string origin, string destination, string deptDate, string deptTime)
 		{
 			Padding = 0;
 			_origin = origin;

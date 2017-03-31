@@ -2,33 +2,26 @@
 using System.Collections.Generic;
 using Plugin.Messaging;
 using Xamarin.Forms;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace FlyLUCK
 {
 	public partial class FlightList : ContentPage
 	{
-		
+
+		private string _authheader = "";
+		private string paxID = Helpers.Settings.PaxID;
 
 		public FlightList()
 		{
 			InitializeComponent();
 
-			CardView cv1 = new CardView("OFP", "JYO", new DateTime(2016, 09, 27), "08:00 AM");
-			CardView cv2 = new CardView("JYO", "SPA", new DateTime(2016, 09, 27), "09:00 AM");
 
-			var tapped = new TapGestureRecognizer();
-			tapped.Tapped += (s, e) =>
-			{
-				OnTapped(s, e);
-			};
+			var _a = LoadFlightList();
 
-
-			cv1.GestureRecognizers.Add(tapped);
-			cv2.GestureRecognizers.Add(tapped);
-
-
-			layout.Children.Add(cv1);
-			layout.Children.Add(cv2);
 
 			//Button bar ******************************************************
 
@@ -43,9 +36,56 @@ namespace FlyLUCK
 
 		}
 
+		private async Task<bool> LoadFlightList()
+		{
+			var myFlightData = await GetFlights();
+			var myFlightObj = JsonConvert.DeserializeObject<List<Flight>>(myFlightData);
+			foreach (Flight f in myFlightObj)
+			{
+				DateTime depart = Convert.ToDateTime(f.LOCALLEAVE);
+				CardView cv = new CardView(f.FROMCITY, f.TOCITY, depart.ToString("d"), depart.ToString("t"));
+				var tapped = new TapGestureRecognizer();
+
+				tapped.Tapped += (sender, e) =>
+				{
+					OnTapped(sender, e);
+				};
+				tapped.CommandParameter = f;
+				cv.GestureRecognizers.Add(tapped);
+				layout.Children.Add(cv);
+			}
+			return true;
+
+		}
+
+		private async Task<string> GetFlights()
+		{
+			HttpClient client = new HttpClient();
+			client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", _authheader);
+			client.MaxResponseContentBufferSize = 512000;
+
+			try
+			{
+				Uri myflightsUrl;
+				if(Helpers.Settings.FlightCrew == true)
+					myflightsUrl = new Uri(String.Format(Constants.ServiceUrl + "/getcrewflights/" + paxID, string.Empty));
+				else
+					myflightsUrl = new Uri(String.Format(Constants.ServiceUrl + "/getflights/" + paxID, string.Empty));
+
+				return await client.GetStringAsync(myflightsUrl);
+
+			}
+			catch (Exception ex)
+			{
+				return ex.ToString();
+			}
+
+		}
+
 		async void OnTapped(Object sender, EventArgs e)
 		{
-			await Navigation.PushModalAsync(new FlightDetail());
+			Flight flt = (Flight)((TappedEventArgs)e).Parameter;
+			await Navigation.PushModalAsync(new FlightDetail(flt));
 		}
 
 		private void ClosePage_Clicked(object sender, EventArgs e)

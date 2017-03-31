@@ -3,11 +3,20 @@ using System.Collections.Generic;
 using Plugin.Messaging;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace FlyLUCK
 {
 	public partial class FlightDetail : ContentPage
 	{
+		Map map;
+		Pin pin;
+		string address;
+		private string _crewcontact = "";
+
 		void Handle_Clicked(object sender, System.EventArgs e)
 		{
 			this.Navigation.PopModalAsync();
@@ -15,13 +24,19 @@ namespace FlyLUCK
 
 		void OpenMaps(object sender, System.EventArgs e)
 		{
-			string url = "http://maps.apple.com/?daddr=1001%20Sycolin%20Rd,%20Leesburg,%20VA";
+			string url = "http://maps.apple.com/?daddr=" + address;
 			url = url.Replace(" ", "%20");
 			Device.OpenUri(new Uri(url));
 
 		}
 
 		void SendMessage(object sender, EventArgs e)
+		{
+			var messenger = DependencyService.Get<IMessenger>();
+			messenger.SendMessage(_crewcontact, "On our way back to the airport!");
+		}
+
+		/*void SendMessage(object sender, EventArgs e)
 		{
 
 			SendMessage sm = new FlyLUCK.SendMessage();
@@ -43,7 +58,7 @@ namespace FlyLUCK
 			cancel.Clicked += (s, a) => { this.Navigation.PopModalAsync();};
 			send.Clicked += (sndr, eva) => {
 				var messenger = DependencyService.Get<IMessenger>();
-				messenger.SendMessage("18042480700", "This is a test");
+				messenger.SendMessage(_crewcontact, "On our way back to the airport!");
 				//var msg = new Messaging();
 				//msg.SendMessage("18042480700");
 				/*var smsMessage = MessagingPlugin.SmsMessenger;
@@ -58,7 +73,7 @@ namespace FlyLUCK
 					{
 						DisplayAlert("ERROR!", ex.ToString(), "Close");
 					}
-				}*/
+				}
 			};
 			RowDefinition row = new RowDefinition { Height = 200 };
 			RowDefinition row2 = new RowDefinition();
@@ -79,9 +94,9 @@ namespace FlyLUCK
 			layout.Children.Add(frame, new Rectangle(40, 150, 300, 300));
 			sm.Content = layout;
 			this.Navigation.PushModalAsync(sm,false);
-		}
+		}*/
 
-		public FlightDetail()
+		public FlightDetail(Flight flt)
 		{
 			InitializeComponent();
 
@@ -89,9 +104,9 @@ namespace FlyLUCK
 			//TODO: Insert call to database here...
 
 			//From-To section**************************************************
-			Label origin = new Label { Text = "OFP" };
+			Label origin = new Label { Text = flt.ORIGIN };
 			Image plane = new Image { Source = "airplane.png"};
-			Label dest = new Label { Text = "JYO" };
+			Label dest = new Label { Text = flt.DEST };
 			origin.HorizontalTextAlignment = TextAlignment.Start;
 			origin.VerticalTextAlignment = TextAlignment.Center;
 			origin.FontSize = 28;
@@ -110,8 +125,8 @@ namespace FlyLUCK
 			Grid.SetColumnSpan(dest, 2);
 
 			//City pairs ******************************************************
-			Label originCity = new Label { Text = "Hanover County" };
-			Label destCity = new Label { Text = "Leesburg Executive" };
+			Label originCity = new Label { Text = flt.FROMAIRPORTNAME };
+			Label destCity = new Label { Text = flt.TOAIRPORTNAME };
 			originCity.HorizontalTextAlignment = TextAlignment.Start;
 			originCity.VerticalTextAlignment = TextAlignment.Center;
 			originCity.FontSize = 12;
@@ -129,10 +144,11 @@ namespace FlyLUCK
 			//Time Section ****************************************************
 			Label deptLabel = new Label { Text = "Departs" };
 			Label arrLabel = new Label { Text = "Arrives" };
-			Label deptTime = new Label { Text = "08:00 AM" };
-			Label arrTime = new Label { Text = "08:30 AM" };
+			Label deptTime = new Label { Text = flt.LOCALLEAVE };
+			Label arrTime = new Label { Text = flt.LOCALARRIVE };
 
-
+			deptTime.FontSize = 14;
+			arrTime.FontSize = 14;
 			arrLabel.HorizontalTextAlignment = TextAlignment.End;
 			arrTime.HorizontalTextAlignment = TextAlignment.End;
 
@@ -164,17 +180,27 @@ namespace FlyLUCK
 			DetailGrid.Children.Add(crewLabel, 0, 4);
 			Grid.SetColumnSpan(crewLabel, 5);
 
-			Label lineLabel = new Label { Text = " " };
+			Label lineLabel = new Label();
 			lineLabel.BackgroundColor = Color.Silver;
 			DetailGrid.Children.Add(lineLabel, 0, 3);
 			Grid.SetColumnSpan(lineLabel, 5);
 
 			//Crew Section ******************************************************
 
-			Label pilot1 = new Label { Text = "Ryan Blanchard" };
-			Label pilot1Phone = new Label { Text = "(804) 380-0451" };
-			Label pilot2 = new Label { Text = "John Kirksey" };
-			Label pilot2Phone = new Label { Text = "(804) 248-0700" };
+
+			//call REST service to get crew info
+			HttpClient client = new HttpClient();
+			Uri crewUrl = new Uri(String.Format(Constants.ServiceUrl + "/getcrew/" + flt.LEGID, string.Empty));
+			string _crewdata = client.GetStringAsync(crewUrl).Result;
+			var crewobj = JsonConvert.DeserializeObject<List<Crew>>(_crewdata);
+
+
+			Label pilot1 = new Label { Text = crewobj[0].NAME };
+			Label pilot1Phone = new Label { Text = crewobj[0].CELLULAR };
+			Label pilot2 = new Label { Text = crewobj[1].NAME };
+			Label pilot2Phone = new Label { Text = crewobj[1].CELLULAR };
+
+			_crewcontact = "sms:" + crewobj[0].CELLULAR;
 
 			pilot1.HorizontalTextAlignment = TextAlignment.Start;
 			pilot2.HorizontalTextAlignment = TextAlignment.Start;
@@ -193,12 +219,41 @@ namespace FlyLUCK
 			DetailGrid.Children.Add(pilot2, 0, 6);
 			DetailGrid.Children.Add(pilot2Phone, 3, 6);
 
-			Grid.SetColumnSpan(pilot1, 2);
+			Grid.SetColumnSpan(pilot1, 3);
 			Grid.SetColumnSpan(pilot1Phone, 2);
-			Grid.SetColumnSpan(pilot2, 2);
+			Grid.SetColumnSpan(pilot2, 3);
 			Grid.SetColumnSpan(pilot2Phone, 2);
 
 			//Passengers Label ************************************************
+
+
+			//call REST service to get crew info
+			Uri paxUrl = new Uri(String.Format(Constants.ServiceUrl + "/getpax/" + flt.LEGID, string.Empty));
+			string _paxdata = client.GetStringAsync(paxUrl).Result;
+			var paxobj = JsonConvert.DeserializeObject<List<Passenger>>(_paxdata);
+
+			ListView paxListView = new ListView
+			{
+				RowHeight = 20,
+				ItemsSource = paxobj,
+				ItemTemplate = new DataTemplate(() =>
+			   		{
+					   Label lbl = new Label();
+					   lbl.SetBinding(Label.TextProperty, "PAXNAME");
+						   lbl.FontSize = 14;
+						   return new ViewCell
+						   {
+							   View = new StackLayout
+							   {
+									VerticalOptions = LayoutOptions.Center,
+									Spacing = 0,
+									Orientation = StackOrientation.Horizontal,
+								  	Children = { lbl }
+							   }
+						   };
+					})
+			};
+
 
 			Label paxLabel = new Label { Text = "Passenger List" };
 			paxLabel.HorizontalTextAlignment = TextAlignment.Start;
@@ -209,7 +264,8 @@ namespace FlyLUCK
 
 			DetailGrid.Children.Add(paxLabel, 0, 8);
 			Grid.SetColumnSpan(paxLabel, 5);
-
+			DetailGrid.Children.Add(paxListView, 0, 9);
+			Grid.SetColumnSpan(paxListView, 5);
 			Label lineLabel2 = new Label { Text = " " };
 			lineLabel2.BackgroundColor = Color.Silver;
 			DetailGrid.Children.Add(lineLabel2, 0, 7);
@@ -232,9 +288,9 @@ namespace FlyLUCK
 			Grid.SetColumnSpan(lineLabel3, 5);
 
 			StackLayout addressLayout = new StackLayout();
-			Label destAddr = new Label { Text = "ProJet Aviation" };
-			Label destAddr1 = new Label { Text = "1001 Sycolin Road" };
-			Label destAddr2 = new Label { Text = "Leesburg, VA 20175" };
+			Label destAddr = new Label { Text = flt.FBONAME };
+			Label destAddr1 = new Label { Text = flt.FBOADDRESS1 };
+			Label destAddr2 = new Label { Text = flt.FBOCITY + ", " + flt.FBOSTATE + " " + flt.FBOZIP };
 
 			destAddr.FontSize = 14;
 			destAddr1.FontSize = 14;
@@ -255,10 +311,14 @@ namespace FlyLUCK
 			DetailGrid.Children.Add(openMaps, 3, 12);
 			Grid.SetColumnSpan(openMaps, 2);*/
 			//Map *************************************************************
+			address = flt.FBOADDRESS1 + ", " + flt.FBOCITY + ", " + flt.FBOSTATE + " " + flt.FBOZIP;
+			double x = 0.0, y = 0.0;
 
-			var map = new Map(
+			var posList = GetPosition();
+
+			map = new Map(
 			MapSpan.FromCenterAndRadius(
-					new Position(39.0682111, -77.5547217), Distance.FromMiles(1.0)))
+					new Position(x, y), Distance.FromMiles(1.0)))
 			{
 				IsShowingUser = true,
 				HeightRequest = 100,
@@ -267,16 +327,7 @@ namespace FlyLUCK
 			};
 			map.MapType = MapType.Street;
 
-			var position = new Position(39.0682111, -77.5547217); // Latitude, Longitude
-			var pin = new Pin
-			{
-				Type = PinType.Place,
-				Position = position,
-				Label = "JYO",
-				Address = "1001 Sycolin Rd, Leesburg, VA"
-			};
-			pin.Clicked += OpenMaps;
-			map.Pins.Add(pin);
+
 
 			DetailGrid.Children.Add(map, 3, 12);
 			Grid.SetColumnSpan(map, 2);
@@ -291,9 +342,35 @@ namespace FlyLUCK
 
 			DetailGrid.Children.Add(closePage, 0, 14);
 			DetailGrid.Children.Add(sendCrewMessage, 2, 14);
-			//DetailGrid.Children.Add(cancelFlight, 4, 14);
-
 
 		}
+
+
+		public async Task<bool> GetPosition()
+		{
+			Geocoder gcoder = new Geocoder();
+			double x = 0.0, y = 0.0;
+			var posList = await gcoder.GetPositionsForAddressAsync(address);
+			foreach (var p in posList)
+			{
+				x = p.Latitude;
+				y = p.Longitude;
+			}
+			map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(x, y), Distance.FromMiles(1.0)));
+
+			pin = new Pin
+			{
+				Type = PinType.Place,
+				Position = new Position(x, y),
+				Label = "PIN",
+				Address = address
+			};
+			pin.Clicked += OpenMaps;
+			map.Pins.Add(pin);
+
+			return true;
+		}
+
+
 	}
 }

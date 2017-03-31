@@ -7,10 +7,21 @@ namespace FlyLUCK
 {
 	public partial class HomePage : ContentPage
 	{
+
+		public void OnLoggedIn(object sender, EventArgs e)
+		{
+			welcomeLabel.Text = "Welcome " + Helpers.Settings.UserName;	
+		}
+
 		public HomePage()
 		{
 			InitializeComponent();
 
+			//if this is the first login present the login page to capture the UserID
+
+			LoginPage lp = new LoginPage();
+			lp.LoggedIn += OnLoggedIn;
+			Navigation.PushModalAsync(lp);
 
 			Button openCalendar = new Button { Image = "calendar.png" };
 			Button openMyFlights = new Button { Image = "myflights2.png" };

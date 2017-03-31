@@ -5,7 +5,9 @@
 	<ContentPage.Content>
 		
 			<StackLayout x:Name="layout">
-				<StackLayout Padding="50" />
+				<StackLayout Padding="50">
+					<Label x:Name="welcomeLabel" />
+				</StackLayout>
 				<StackLayout Padding="20">
 					<Grid Padding="30" HorizontalOptions="Center" VerticalOptions="Center" x:Name="mainGrid" RowSpacing="50" ColumnSpacing="50">
 						<Grid.ColumnDefinitions>
