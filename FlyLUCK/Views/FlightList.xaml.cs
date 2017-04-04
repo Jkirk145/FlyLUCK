@@ -48,7 +48,7 @@ namespace FlyLUCK
 			foreach (Flight f in myFlightObj)
 			{
 				DateTime depart = Convert.ToDateTime(f.LOCALLEAVE);
-				CardView cv = new CardView(f.FROMCITY, f.TOCITY, depart.ToString("d"), depart.ToString("t"));
+				CardView cv = new CardView(f.FROMCITY, f.TOCITY, f.FROMSTATE, f.TOSTATE, depart.ToString("d"), depart.ToString("t"));
 				var tapped = new TapGestureRecognizer();
 
 				tapped.Tapped += (sender, e) =>

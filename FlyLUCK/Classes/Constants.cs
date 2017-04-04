@@ -11,7 +11,7 @@ namespace FlyLUCK
 		public static string Password = "Phenom300";
 
 		// Azure app-specific connection string and hub path
-		public const string ConnectionString = "<Azure connection string>";
-		public const string NotificationHubPath = "<Azure hub path>";
+		public const string ConnectionString = "Endpoint=sb://flyluckns.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=CsN55kouxy4zT/O1NvQbkI0pRRp0/TBi8TyEYdZRAPE=";
+		public const string NotificationHubPath = "flyluckhub";
 	}
 }

@@ -5,7 +5,7 @@
 		x:Class="FlyLUCK.FlightList">
 	<ContentPage.Content>
 		<AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-
+			<Label HorizontalTextAlignment="Center" FontSize="18" Text="My Flights" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5, 0.05, 0.9, 0.2" />
 			<ScrollView Orientation="Vertical" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5, 0.3, 0.9, 0.7" x:Name="flightList">
 				<StackLayout x:Name = "layout" HorizontalOptions="FillAndExpand" />
 			</ScrollView>

@@ -67,18 +67,22 @@ namespace FlyLUCK
 		private string _destination = "";
 		private string _date = "";
 		private string _time = "";
+		private string _fromstate = "";
+		private string _tostate = "";
 
 		public CardView()
 		{
 		}
 
-		public CardView(string origin, string destination, string deptDate, string deptTime)
+		public CardView(string origin, string destination, string fromstate, string tostate, string deptDate, string deptTime)
 		{
 			Padding = 0;
 			_origin = origin;
 			_destination = destination;
 			_date = deptDate;
 			_time = deptTime;
+			_fromstate = fromstate;
+			_tostate = tostate;
 
 			StackLayout layout = new StackLayout();
 
@@ -87,7 +91,7 @@ namespace FlyLUCK
 
 				Label dateLabel = new Label { Text = "Date: " + _date };
 				Label timeLabel = new Label { Text = "Departure Time: " + _time};
-				Label citiesLabel = new Label { Text = "From: " + _origin + " To: " + _destination, FontSize = 24 };
+				Label citiesLabel = new Label { Text = "From: " + _origin + ", " + _fromstate + " To: " + _destination + ", " + tostate, FontSize = 24 };
 
 				layout.Children.Add(dateLabel);
 				layout.Children.Add(citiesLabel);

@@ -18,6 +18,8 @@ namespace FlyLUCK
 		public string TOAIRPORTNAME { get; set; }
 		public string FROMCITY { get; set; }
 		public string TOCITY { get; set; }
+		public string FROMSTATE { get; set; }
+		public string TOSTATE { get; set; }
 		public string FBONAME { get; set; }
 		public string FBOADDRESS1 { get; set; }
 		public string FBOCITY { get; set; }
