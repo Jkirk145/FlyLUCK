@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Net;
+using CoreFoundation;
 using Foundation;
+using SystemConfiguration;
 using UIKit;
 using Xamarin.Forms.Platform.iOS;
 
@@ -39,4 +42,7 @@ namespace FlyLUCK.iOS
 
 		}
 	}
+
+
+
 }

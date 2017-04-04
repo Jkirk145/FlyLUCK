@@ -1999,8 +1999,8 @@ namespace FlyLUCK.Droid
 			// aapt resource value: 0x7f020055
 			public const int flyLUCK_icon57 = 2130837589;
 			
-			// aapt resource value: 0x7f0200bb
-			public const int focused = 2130837691;
+			// aapt resource value: 0x7f0200bc
+			public const int focused = 2130837692;
 			
 			// aapt resource value: 0x7f020056
 			public const int ic_audiotrack = 2130837590;
@@ -2213,100 +2213,103 @@ namespace FlyLUCK.Droid
 			public const int information = 2130837659;
 			
 			// aapt resource value: 0x7f02009c
-			public const int Luck_Aviation_Logo3 = 2130837660;
+			public const int login_background = 2130837660;
 			
 			// aapt resource value: 0x7f02009d
-			public const int Luck_Aviation_Logo4 = 2130837661;
+			public const int Luck_Aviation_Logo3 = 2130837661;
 			
 			// aapt resource value: 0x7f02009e
-			public const int map_marker = 2130837662;
+			public const int Luck_Aviation_Logo4 = 2130837662;
 			
 			// aapt resource value: 0x7f02009f
-			public const int message = 2130837663;
+			public const int map_marker = 2130837663;
 			
 			// aapt resource value: 0x7f0200a0
-			public const int month_current_date_circle = 2130837664;
+			public const int message = 2130837664;
 			
 			// aapt resource value: 0x7f0200a1
-			public const int month_selected_item = 2130837665;
+			public const int month_current_date_circle = 2130837665;
 			
 			// aapt resource value: 0x7f0200a2
-			public const int month_view_item_border = 2130837666;
+			public const int month_selected_item = 2130837666;
 			
 			// aapt resource value: 0x7f0200a3
-			public const int mr_dialog_material_background_dark = 2130837667;
+			public const int month_view_item_border = 2130837667;
 			
 			// aapt resource value: 0x7f0200a4
-			public const int mr_dialog_material_background_light = 2130837668;
+			public const int mr_dialog_material_background_dark = 2130837668;
 			
 			// aapt resource value: 0x7f0200a5
-			public const int mr_ic_audiotrack_light = 2130837669;
+			public const int mr_dialog_material_background_light = 2130837669;
 			
 			// aapt resource value: 0x7f0200a6
-			public const int mr_ic_cast_dark = 2130837670;
+			public const int mr_ic_audiotrack_light = 2130837670;
 			
 			// aapt resource value: 0x7f0200a7
-			public const int mr_ic_cast_light = 2130837671;
+			public const int mr_ic_cast_dark = 2130837671;
 			
 			// aapt resource value: 0x7f0200a8
-			public const int mr_ic_close_dark = 2130837672;
+			public const int mr_ic_cast_light = 2130837672;
 			
 			// aapt resource value: 0x7f0200a9
-			public const int mr_ic_close_light = 2130837673;
+			public const int mr_ic_close_dark = 2130837673;
 			
 			// aapt resource value: 0x7f0200aa
-			public const int mr_ic_media_route_connecting_mono_dark = 2130837674;
+			public const int mr_ic_close_light = 2130837674;
 			
 			// aapt resource value: 0x7f0200ab
-			public const int mr_ic_media_route_connecting_mono_light = 2130837675;
+			public const int mr_ic_media_route_connecting_mono_dark = 2130837675;
 			
 			// aapt resource value: 0x7f0200ac
-			public const int mr_ic_media_route_mono_dark = 2130837676;
+			public const int mr_ic_media_route_connecting_mono_light = 2130837676;
 			
 			// aapt resource value: 0x7f0200ad
-			public const int mr_ic_media_route_mono_light = 2130837677;
+			public const int mr_ic_media_route_mono_dark = 2130837677;
 			
 			// aapt resource value: 0x7f0200ae
-			public const int mr_ic_pause_dark = 2130837678;
+			public const int mr_ic_media_route_mono_light = 2130837678;
 			
 			// aapt resource value: 0x7f0200af
-			public const int mr_ic_pause_light = 2130837679;
+			public const int mr_ic_pause_dark = 2130837679;
 			
 			// aapt resource value: 0x7f0200b0
-			public const int mr_ic_play_dark = 2130837680;
+			public const int mr_ic_pause_light = 2130837680;
 			
 			// aapt resource value: 0x7f0200b1
-			public const int mr_ic_play_light = 2130837681;
+			public const int mr_ic_play_dark = 2130837681;
 			
 			// aapt resource value: 0x7f0200b2
-			public const int myflights2 = 2130837682;
+			public const int mr_ic_play_light = 2130837682;
 			
 			// aapt resource value: 0x7f0200b3
-			public const int newflight = 2130837683;
+			public const int myflights2 = 2130837683;
 			
 			// aapt resource value: 0x7f0200b4
-			public const int newflight35 = 2130837684;
+			public const int newflight = 2130837684;
 			
 			// aapt resource value: 0x7f0200b5
-			public const int next = 2130837685;
-			
-			// aapt resource value: 0x7f0200ba
-			public const int notification_template_icon_bg = 2130837690;
+			public const int newflight35 = 2130837685;
 			
 			// aapt resource value: 0x7f0200b6
-			public const int prev = 2130837686;
+			public const int next = 2130837686;
 			
-			// aapt resource value: 0x7f0200bc
-			public const int selected = 2130837692;
+			// aapt resource value: 0x7f0200bb
+			public const int notification_template_icon_bg = 2130837691;
 			
 			// aapt resource value: 0x7f0200b7
-			public const int sendMessage = 2130837687;
+			public const int prev = 2130837687;
+			
+			// aapt resource value: 0x7f0200bd
+			public const int selected = 2130837693;
 			
 			// aapt resource value: 0x7f0200b8
-			public const int sendMessage2 = 2130837688;
+			public const int sendMessage = 2130837688;
 			
 			// aapt resource value: 0x7f0200b9
-			public const int submit = 2130837689;
+			public const int sendMessage2 = 2130837689;
+			
+			// aapt resource value: 0x7f0200ba
+			public const int submit = 2130837690;
 			
 			static Drawable()
 			{

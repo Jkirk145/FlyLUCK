@@ -42,5 +42,7 @@
 	<string>Photo Library Access Warning</string>
 	<key>CFBundleVersion</key>
 	<string>5.0</string>
+	<key>UIRequiresPersistentWiFi</key>
+	<true/>
 </dict>
 </plist>

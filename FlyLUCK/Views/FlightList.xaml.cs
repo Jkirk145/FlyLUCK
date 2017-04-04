@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using FlyLUCK.ViewModels;
 
 namespace FlyLUCK
 {
@@ -15,13 +16,16 @@ namespace FlyLUCK
 		private string _authheader = "";
 		private string paxID = Helpers.Settings.PaxID;
 
+		private CalendarViewModel vm { get; set; }
+
 		public FlightList()
 		{
 			InitializeComponent();
 
+			vm = new CalendarViewModel();
+			BindingContext = vm;
 
 			var _a = LoadFlightList();
-
 
 			//Button bar ******************************************************
 
@@ -38,6 +42,7 @@ namespace FlyLUCK
 
 		private async Task<bool> LoadFlightList()
 		{
+			vm.IsLoading = true;
 			var myFlightData = await GetFlights();
 			var myFlightObj = JsonConvert.DeserializeObject<List<Flight>>(myFlightData);
 			foreach (Flight f in myFlightObj)
@@ -54,6 +59,7 @@ namespace FlyLUCK
 				cv.GestureRecognizers.Add(tapped);
 				layout.Children.Add(cv);
 			}
+			vm.IsLoading = false;
 			return true;
 
 		}

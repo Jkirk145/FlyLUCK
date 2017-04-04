@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Plugin.Messaging;
 using Xamarin.Forms;
+using Plugin.Connectivity;
 
 namespace FlyLUCK
 {
@@ -16,18 +17,19 @@ namespace FlyLUCK
 		public HomePage()
 		{
 			InitializeComponent();
-
+				
 			//if this is the first login present the login page to capture the UserID
-
-			LoginPage lp = new LoginPage();
-			lp.LoggedIn += OnLoggedIn;
-			Navigation.PushModalAsync(lp);
+			if (Helpers.Settings.UserID.Length == 0)
+			{
+				LoginPage lp = new LoginPage();
+				lp.LoggedIn += OnLoggedIn;
+				Navigation.PushModalAsync(lp);
+			}
 
 			Button openCalendar = new Button { Image = "calendar.png" };
 			Button openMyFlights = new Button { Image = "myflights2.png" };
 			Button newFlight = new Button { Image = "submit.png" };
 			Button aboutUs = new Button { Image = "information.png" };
-
 
 			openCalendar.HeightRequest = 60;
 			openCalendar.VerticalOptions = LayoutOptions.Center;
@@ -80,18 +82,33 @@ namespace FlyLUCK
 
 		async void OpenMyFlights(object sender, EventArgs e)
 		{
+			if (!CrossConnectivity.Current.IsConnected)
+			{
+				await DisplayAlert("Oops!", "There is a problem with your network connection. Please verify your settings and try again.", "Close");
+				return;
+			}
 			await Navigation.PushModalAsync(new FlightList());
 			return;
 		}
 
 		async void OpenCalendar(object sender, EventArgs e)
 		{
+			if (!CrossConnectivity.Current.IsConnected)
+			{
+				await DisplayAlert("Oops!", "There is a problem with your network connection. Please verify your settings and try again.", "Close");
+				return;
+			}
 			await Navigation.PushModalAsync(new Calendar());
 			return;
 		}
 
 		async void NewFlight(object sender, EventArgs e)
 		{
+			if(!CrossConnectivity.Current.IsConnected)
+			{
+				await DisplayAlert("Oops!", "There is a problem with your network connection. Please verify your settings and try again.", "Close");
+				return;
+			}
 			await Navigation.PushModalAsync(new FlightRequestPage());
 			return;
 		}

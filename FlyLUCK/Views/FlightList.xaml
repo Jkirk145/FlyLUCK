@@ -4,20 +4,24 @@
 		xmlns:local="clr-namespace:FlyLUCK;assembly=FlyLUCK"
 		x:Class="FlyLUCK.FlightList">
 	<ContentPage.Content>
-		<StackLayout Padding="20">
-			<StackLayout Padding="40">
-				<Label Text="My Flights" VerticalOptions="Center" HorizontalTextAlignment="Center" FontSize="24" />
-			</StackLayout>
-				<ScrollView Orientation="Vertical" x:Name="flightList">
-					<StackLayout x:Name = "layout" HorizontalOptions="FillAndExpand" />
-				</ScrollView>
-			<StackLayout x:Name="footer" Padding="20" VerticalOptions="EndAndExpand">
-				<Grid x:Name="buttonbar" HorizontalOptions="FillAndExpand">
-					<Grid.RowDefinitions>
-						<RowDefinition Height="35" />
-					</Grid.RowDefinitions>
-				</Grid>
-			</StackLayout>
-		</StackLayout>
+		<AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+			<ScrollView Orientation="Vertical" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5, 0.3, 0.9, 0.7" x:Name="flightList">
+				<StackLayout x:Name = "layout" HorizontalOptions="FillAndExpand" />
+			</ScrollView>
+			<StackLayout x:Name="spinnerLayout" IsVisible="{Binding IsLoading}" Padding="12"
+                 AbsoluteLayout.LayoutFlags="PositionProportional"
+                 AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
+
+	       		<ActivityIndicator IsRunning="{Binding IsLoading}"/>
+
+	     	</StackLayout>
+
+			<Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,1,0.7,0.1" x:Name="buttonbar">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="35" />
+				</Grid.RowDefinitions>
+			</Grid>
+		</AbsoluteLayout>
 	</ContentPage.Content>
 </ContentPage>
