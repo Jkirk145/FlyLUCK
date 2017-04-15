@@ -57,8 +57,6 @@ namespace FlyLUCK
 			this.GestureRecognizers.Add(tapped);
 		}
 
-
-
 	}
 
 	public class CardView : Frame
@@ -86,8 +84,6 @@ namespace FlyLUCK
 
 			StackLayout layout = new StackLayout();
 
-			if (Device.OS == TargetPlatform.iOS)
-			{
 
 				Label dateLabel = new Label { Text = "Date: " + _date };
 				Label timeLabel = new Label { Text = "Departure Time: " + _time};
@@ -99,12 +95,11 @@ namespace FlyLUCK
 				Content = layout;
 
 				Padding = 20;
-				HasShadow = false;
+				HasShadow = true;
 				OutlineColor = Color.Black;
-				BackgroundColor = Color.Transparent;
+			//	BackgroundColor = Color.Transparent;
 				HorizontalOptions = LayoutOptions.FillAndExpand;
 
-			}
 		}
 
 

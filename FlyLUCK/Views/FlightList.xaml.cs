@@ -7,12 +7,13 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using FlyLUCK.ViewModels;
+using System.Collections.ObjectModel;
 
 namespace FlyLUCK
 {
 	public partial class FlightList : ContentPage
 	{
-
+		private ObservableCollection<CardView> cvList;
 		private string _authheader = "";
 		private string paxID = Helpers.Settings.PaxID;
 
@@ -25,7 +26,8 @@ namespace FlyLUCK
 			vm = new CalendarViewModel();
 			BindingContext = vm;
 
-			var _a = LoadFlightList();
+			LoadFlightList();
+
 
 			//Button bar ******************************************************
 
@@ -40,8 +42,14 @@ namespace FlyLUCK
 
 		}
 
-		private async Task<bool> LoadFlightList()
+		protected override void OnAppearing()
 		{
+			base.OnAppearing();
+		}
+
+		private async void LoadFlightList()
+		{
+			StackLayout sl = new StackLayout { HorizontalOptions = LayoutOptions.FillAndExpand };
 			vm.IsLoading = true;
 			var myFlightData = await GetFlights();
 			var myFlightObj = JsonConvert.DeserializeObject<List<Flight>>(myFlightData);
@@ -58,9 +66,13 @@ namespace FlyLUCK
 				tapped.CommandParameter = f;
 				cv.GestureRecognizers.Add(tapped);
 				layout.Children.Add(cv);
+
+				//layout.Children.Add(new Label { Text = f.DEST });
 			}
+
+			//flightList.Content = sl;
 			vm.IsLoading = false;
-			return true;
+			flightList.IsClippedToBounds = true;
 
 		}
 

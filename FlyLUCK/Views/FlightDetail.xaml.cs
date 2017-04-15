@@ -7,6 +7,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Net;
+using FlyLUCK.ViewModels;
 
 namespace FlyLUCK
 {
@@ -16,6 +18,9 @@ namespace FlyLUCK
 		Pin pin;
 		string address;
 		private string _crewcontact = "";
+		private Flight _flight;
+
+		private CalendarViewModel vm { get; set; }
 
 		void Handle_Clicked(object sender, System.EventArgs e)
 		{
@@ -24,8 +29,16 @@ namespace FlyLUCK
 
 		void OpenMaps(object sender, System.EventArgs e)
 		{
-			string url = "http://maps.apple.com/?daddr=" + address;
-			url = url.Replace(" ", "%20");
+			string url = "";
+			if (Device.RuntimePlatform == Device.iOS)
+			{
+				url = "http://maps.apple.com/?daddr=" + address;
+			}
+			else
+			{
+				url = "geo: 0,0 ? q = " + address;
+			}
+			
 			Device.OpenUri(new Uri(url));
 
 		}
@@ -100,13 +113,27 @@ namespace FlyLUCK
 		{
 			InitializeComponent();
 
+			vm = new CalendarViewModel();
+			BindingContext = vm;
+
+			_flight = flt;
+
+			LoadDetailData();
+
+
+		}
+
+		private async void LoadDetailData()
+		{
 			//Call to retrieve flight details
 			//TODO: Insert call to database here...
 
+			vm.IsLoading = true;
+
 			//From-To section**************************************************
-			Label origin = new Label { Text = flt.ORIGIN };
-			Image plane = new Image { Source = "airplane.png"};
-			Label dest = new Label { Text = flt.DEST };
+			Label origin = new Label { Text = _flight.ORIGIN };
+			Image plane = new Image { Source = "airplane.png" };
+			Label dest = new Label { Text = _flight.DEST };
 			origin.HorizontalTextAlignment = TextAlignment.Start;
 			origin.VerticalTextAlignment = TextAlignment.Center;
 			origin.FontSize = 28;
@@ -125,8 +152,8 @@ namespace FlyLUCK
 			Grid.SetColumnSpan(dest, 2);
 
 			//City pairs ******************************************************
-			Label originCity = new Label { Text = flt.FROMAIRPORTNAME };
-			Label destCity = new Label { Text = flt.TOAIRPORTNAME };
+			Label originCity = new Label { Text = _flight.FROMAIRPORTNAME };
+			Label destCity = new Label { Text = _flight.TOAIRPORTNAME };
 			originCity.HorizontalTextAlignment = TextAlignment.Start;
 			originCity.VerticalTextAlignment = TextAlignment.Center;
 			originCity.FontSize = 12;
@@ -144,8 +171,8 @@ namespace FlyLUCK
 			//Time Section ****************************************************
 			Label deptLabel = new Label { Text = "Departs" };
 			Label arrLabel = new Label { Text = "Arrives" };
-			Label deptTime = new Label { Text = flt.LOCALLEAVE };
-			Label arrTime = new Label { Text = flt.LOCALARRIVE };
+			Label deptTime = new Label { Text = _flight.LOCALLEAVE };
+			Label arrTime = new Label { Text = _flight.LOCALARRIVE };
 
 			deptTime.FontSize = 14;
 			arrTime.FontSize = 14;
@@ -190,8 +217,8 @@ namespace FlyLUCK
 
 			//call REST service to get crew info
 			HttpClient client = new HttpClient();
-			Uri crewUrl = new Uri(String.Format(Constants.ServiceUrl + "/getcrew/" + flt.LEGID, string.Empty));
-			string _crewdata = client.GetStringAsync(crewUrl).Result;
+			Uri crewUrl = new Uri(String.Format(Constants.ServiceUrl + "/getcrew/" + _flight.LEGID, string.Empty));
+			string _crewdata = await client.GetStringAsync(crewUrl);
 			var crewobj = JsonConvert.DeserializeObject<List<Crew>>(_crewdata);
 
 
@@ -228,8 +255,8 @@ namespace FlyLUCK
 
 
 			//call REST service to get crew info
-			Uri paxUrl = new Uri(String.Format(Constants.ServiceUrl + "/getpax/" + flt.LEGID, string.Empty));
-			string _paxdata = client.GetStringAsync(paxUrl).Result;
+			Uri paxUrl = new Uri(String.Format(Constants.ServiceUrl + "/getpax/" + _flight.LEGID, string.Empty));
+			string _paxdata = await client.GetStringAsync(paxUrl);
 			var paxobj = JsonConvert.DeserializeObject<List<Passenger>>(_paxdata);
 
 			ListView paxListView = new ListView
@@ -238,20 +265,20 @@ namespace FlyLUCK
 				ItemsSource = paxobj,
 				ItemTemplate = new DataTemplate(() =>
 			   		{
-					   Label lbl = new Label();
-					   lbl.SetBinding(Label.TextProperty, "PAXNAME");
+						   Label lbl = new Label();
+						   lbl.SetBinding(Label.TextProperty, "PAXNAME");
 						   lbl.FontSize = 14;
 						   return new ViewCell
 						   {
 							   View = new StackLayout
 							   {
-									VerticalOptions = LayoutOptions.Center,
-									Spacing = 0,
-									Orientation = StackOrientation.Horizontal,
-								  	Children = { lbl }
+								   VerticalOptions = LayoutOptions.Center,
+								   Spacing = 0,
+								   Orientation = StackOrientation.Horizontal,
+								   Children = { lbl }
 							   }
 						   };
-					})
+					   })
 			};
 
 
@@ -260,7 +287,7 @@ namespace FlyLUCK
 			paxLabel.VerticalTextAlignment = TextAlignment.Center;
 			paxLabel.FontSize = 16;
 			paxLabel.FontAttributes = FontAttributes.Bold;
-			paxLabel.TextColor = Color.FromRgb(92, 134, 79);;
+			paxLabel.TextColor = Color.FromRgb(92, 134, 79); ;
 
 			DetailGrid.Children.Add(paxLabel, 0, 8);
 			Grid.SetColumnSpan(paxLabel, 5);
@@ -288,9 +315,9 @@ namespace FlyLUCK
 			Grid.SetColumnSpan(lineLabel3, 5);
 
 			StackLayout addressLayout = new StackLayout();
-			Label destAddr = new Label { Text = flt.FBONAME };
-			Label destAddr1 = new Label { Text = flt.FBOADDRESS1 };
-			Label destAddr2 = new Label { Text = flt.FBOCITY + ", " + flt.FBOSTATE + " " + flt.FBOZIP };
+			Label destAddr = new Label { Text = _flight.FBONAME };
+			Label destAddr1 = new Label { Text = _flight.FBOADDRESS1 };
+			Label destAddr2 = new Label { Text = _flight.FBOCITY + ", " + _flight.FBOSTATE + " " + _flight.FBOZIP };
 
 			destAddr.FontSize = 14;
 			destAddr1.FontSize = 14;
@@ -311,64 +338,75 @@ namespace FlyLUCK
 			DetailGrid.Children.Add(openMaps, 3, 12);
 			Grid.SetColumnSpan(openMaps, 2);*/
 			//Map *************************************************************
-			address = flt.FBOADDRESS1 + ", " + flt.FBOCITY + ", " + flt.FBOSTATE + " " + flt.FBOZIP;
+			address = _flight.FBOADDRESS1 + ", " + _flight.FBOCITY + ", " + _flight.FBOSTATE + " " + _flight.FBOZIP;
 			double x = 0.0, y = 0.0;
 
-			var posList = GetPosition();
+			GetPosition(_flight.DEST);
 
 			map = new Map(
 			MapSpan.FromCenterAndRadius(
-					new Position(x, y), Distance.FromMiles(1.0)))
+					new Position(x, y), Distance.FromMiles(2.0)))
 			{
 				IsShowingUser = true,
-				HeightRequest = 100,
-				WidthRequest = 100,
+				HeightRequest = 160,
+				WidthRequest = 160,
 				VerticalOptions = LayoutOptions.FillAndExpand
 			};
 			map.MapType = MapType.Street;
-
-
 
 			DetailGrid.Children.Add(map, 3, 12);
 			Grid.SetColumnSpan(map, 2);
 
 			//Button bar ******************************************************
 			//Button cancelFlight = new Button { Image = "cancelFlight.png", Text = "Delete" };
-			Button closePage = new Button { Text = "Close", Image = "closePage.png" };
-			Button sendCrewMessage = new Button { Text = "Message", Image = "sendMessage2.png" };
+			Button closePage = new Button { Image = "closePage.png" };
+			Button sendCrewMessage = new Button { Image = "sendMessage2.png" };
+
+			closePage.BackgroundColor = Color.Transparent;
+			sendCrewMessage.BackgroundColor = Color.Transparent;
 
 			closePage.Clicked += Handle_Clicked;
 			sendCrewMessage.Clicked += SendMessage;
 
-			DetailGrid.Children.Add(closePage, 0, 14);
-			DetailGrid.Children.Add(sendCrewMessage, 2, 14);
+			buttonbar.Children.Add(closePage, 0, 0);
+			buttonbar.Children.Add(sendCrewMessage, 1, 0);
 
+			vm.IsLoading = false;
 		}
 
-
-		public async Task<bool> GetPosition()
+		public async void GetPosition(string pinLabel)
 		{
+
+
+
 			Geocoder gcoder = new Geocoder();
 			double x = 0.0, y = 0.0;
-			var posList = await gcoder.GetPositionsForAddressAsync(address);
-			foreach (var p in posList)
+			try
 			{
-				x = p.Latitude;
-				y = p.Longitude;
+				var posList = await gcoder.GetPositionsForAddressAsync(address);
+				foreach (var p in posList)
+				{
+					x = p.Latitude;
+					y = p.Longitude;
+				}
+				map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(x, y), Distance.FromMiles(2.0)));
+
+				pin = new Pin
+				{
+					Type = PinType.Place,
+					Position = new Position(x, y),
+					Label = pinLabel,
+					Address = address
+				};
+
+				pin.Clicked += OpenMaps;
+				map.Pins.Add(pin);
 			}
-			map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(x, y), Distance.FromMiles(1.0)));
-
-			pin = new Pin
+			catch (Exception ex)
 			{
-				Type = PinType.Place,
-				Position = new Position(x, y),
-				Label = "PIN",
-				Address = address
-			};
-			pin.Clicked += OpenMaps;
-			map.Pins.Add(pin);
+				await DisplayAlert("Oops", ex.ToString(), "Close");
+			}
 
-			return true;
 		}
 
 
