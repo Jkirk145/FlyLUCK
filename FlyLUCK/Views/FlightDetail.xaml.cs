@@ -45,8 +45,14 @@ namespace FlyLUCK
 
 		void SendMessage(object sender, EventArgs e)
 		{
-			var messenger = DependencyService.Get<IMessenger>();
-			messenger.SendMessage(_crewcontact, "On our way back to the airport!");
+			try
+			{
+				Device.OpenUri(new Uri(String.Format("sms:{0}", _crewcontact)));
+			}
+			catch (Exception ex)
+			{
+				DisplayAlert("Oops!", ex.ToString(), "Close");
+			}
 		}
 
 		/*void SendMessage(object sender, EventArgs e)
@@ -228,6 +234,7 @@ namespace FlyLUCK
 			Label pilot2Phone = new Label { Text = crewobj[1].CELLULAR };
 
 			_crewcontact = "sms:" + crewobj[0].CELLULAR;
+			//_crewcontact = "sms:18042480700";
 
 			pilot1.HorizontalTextAlignment = TextAlignment.Start;
 			pilot2.HorizontalTextAlignment = TextAlignment.Start;
