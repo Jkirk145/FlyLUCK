@@ -23,8 +23,6 @@
     <CodesignKey>iPhone Distribution</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <MtouchFastDev>true</MtouchFastDev>
-    <MtouchUseSGen>true</MtouchUseSGen>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchArch>i386</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
@@ -38,8 +36,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchUseSGen>true</MtouchUseSGen>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
@@ -56,8 +52,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchUseSGen>true</MtouchUseSGen>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>i386</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
@@ -77,8 +71,6 @@
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchFastDev>true</MtouchFastDev>
-    <MtouchUseSGen>true</MtouchUseSGen>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
@@ -190,11 +182,12 @@
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\flyLUCK_icon57.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\flyLUCK_icon114.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\flyLUCK_icon120.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\flyLUCK_icon152.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\flyLUCK_icon167.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\appicon57.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\appicon114.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\appicon120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\appicon180.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -211,7 +204,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Helpers.cs" />
-    <Compile Include="Messenger.cs" />
     <Compile Include="Helpers\Settings.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +225,7 @@
     <BundleResource Include="Resources\submit.png" />
     <BundleResource Include="Resources\Luck_Aviation_Logo4.png" />
     <BundleResource Include="Resources\login_background.jpeg" />
+    <BundleResource Include="Resources\FlyLUCK_logo.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

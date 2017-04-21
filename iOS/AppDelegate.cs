@@ -51,6 +51,7 @@ namespace FlyLUCK.iOS
 			LoadApplication(new App());
 
 
+
 			return base.FinishedLaunching(app, options);
 		}
 
@@ -68,7 +69,6 @@ namespace FlyLUCK.iOS
 					Console.WriteLine("Error calling Unregister: {0}", error.ToString());
 					return;
 				}
-
 
 				string[] tagList = { "flightStatus", "shuttleUpdates" };
 				NSSet tags = new NSSet(tagList);
