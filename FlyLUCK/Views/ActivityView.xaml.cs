@@ -10,7 +10,6 @@ namespace FlyLUCK
 		public ActivityView()
 		{
 			InitializeComponent();
-			layout.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
 
 		}
 	}

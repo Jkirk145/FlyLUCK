@@ -19,12 +19,14 @@ namespace FlyLUCK
 			InitializeComponent();
 				
 			//if this is the first login present the login page to capture the UserID
-			if (Helpers.Settings.UserID.Length == 0)
+			//if (Helpers.Settings.UserID.Length == 0)
 			{
 				LoginPage lp = new LoginPage();
 				lp.LoggedIn += OnLoggedIn;
 				Navigation.PushModalAsync(lp);
 			}
+
+			welcomeLabel.Text = "Welcome " + Helpers.Settings.UserName;
 
 			Button openCalendar = new Button { Image = "calendar.png" };
 			Button openMyFlights = new Button { Image = "myflights2.png" };

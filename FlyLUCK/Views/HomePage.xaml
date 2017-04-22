@@ -20,11 +20,10 @@
 						</Grid.RowDefinitions>
 					</Grid>
 				</StackLayout>
-				<StackLayout x:Name="sl" VerticalOptions="EndAndExpand">
-					<Image Source="Luck_Aviation_Logo4.png" />
-				</StackLayout>
+				<!--<StackLayout HorizontalOptions="Center" x:Name="sl" VerticalOptions="EndAndExpand">
+					<Image Source="FlyLUCK_logo.png" />
+				</StackLayout>-->
 			</StackLayout>
-
 
 	</ContentPage.Content>
 </ContentPage>

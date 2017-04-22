@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Net.Http;
 using Newtonsoft.Json;
 using Xamarin.Forms;
-
+using System.Threading.Tasks;
+using FlyLUCK.ViewModels;
 
 namespace FlyLUCK
 {
 	public partial class LoginPage : ContentPage
 	{
+		private CalendarViewModel vm { get; set; }
 		public event EventHandler LoggedIn;
 
 		private void OnLoggedIn()
@@ -18,24 +20,30 @@ namespace FlyLUCK
 		}
 
 
-		void Handle_Clicked(object sender, System.EventArgs e)
+		async void Handle_Clicked(object sender, System.EventArgs e)
 		{
+			vm = new CalendarViewModel();
+			BindingContext = vm;
+
 
 			if (userID.Text.Length == 0 || userID.Text.Contains("@") == false)
 			{
-				DisplayAlert("Oops!", "You must enter a valid email address!", "Close");
+				await DisplayAlert("Oops!", "You must enter a valid email address!", "Close");
 				userID.BackgroundColor = Color.Red;
 				return;
 			}
 			try
 			{
+				vm.IsLoading = true;
+				mainGrid.IsVisible = false;
+
 				//call REST service to get crew info
 				HttpClient client = new HttpClient();
 				Uri crewUrl = new Uri(String.Format(Constants.ServiceUrl + "/getuserdata?email=" + userID.Text, string.Empty));
-				string _userdata = client.GetStringAsync(crewUrl).Result;
+				string _userdata = await client.GetStringAsync(crewUrl);
 				if (_userdata == "[]")
 				{
-					DisplayAlert("Oops!", "Email address not found!", "Close");
+					await DisplayAlert("Oops!", "Email address not found!", "Close");
 					userID.BackgroundColor = Color.Red;
 					return;
 				}
@@ -53,16 +61,16 @@ namespace FlyLUCK
 				else
 					Helpers.Settings.PaxID = userobj[0].PAXID;
 				LoggedIn(this, e);
-				Navigation.PopModalAsync();
+				await Navigation.PopModalAsync();
 			}
 			catch (AggregateException ae) when (ae.InnerException is HttpRequestException)
 			{
 				
-					DisplayAlert("Oops", "There was a problem with your network connection. Please verify your settings and try again.", "Close");
+					await DisplayAlert("Oops", "There was a problem with your network connection. Please verify your settings and try again.", "Close");
 					System.Diagnostics.Debug.WriteLine(ae.ToString());
-
+				vm.IsLoading = false;
 			}
-
+			vm.IsLoading = false;
 		}
 
 		public LoginPage()
