@@ -44,7 +44,7 @@ namespace FlyLUCK
 			await Navigation.PopModalAsync();
 		}
 
-		async void Handle_Clicked(object sender, System.EventArgs e)
+		/*async void Handle_Clicked(object sender, System.EventArgs e)
 		{
 			vm = new CalendarViewModel();
 			BindingContext = vm;
@@ -53,7 +53,7 @@ namespace FlyLUCK
 			if (userID.Text.Length == 0 || userID.Text.Contains("@") == false)
 			{
 				await DisplayAlert("Oops!", "You must enter a valid email address!", "Close");
-				userID.BackgroundColor = Color.Red;
+				//userID.BackgroundColor = Color.Red;
 				return;
 			}
 			try
@@ -86,6 +86,7 @@ namespace FlyLUCK
 					Helpers.Settings.PaxID = userobj[0].PAXID;
 				LoggedIn(this, e);
 				await Navigation.PopModalAsync();
+
 			}
 			catch (AggregateException ae) when (ae.InnerException is HttpRequestException)
 			{
@@ -95,7 +96,8 @@ namespace FlyLUCK
 				vm.IsLoading = false;
 			}
 			vm.IsLoading = false;
-		}
+
+		}*/
 
 		public LoginPage()
 		{
