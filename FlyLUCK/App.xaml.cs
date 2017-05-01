@@ -7,10 +7,8 @@ namespace FlyLUCK
 		public App()
 		{
 			InitializeComponent();
-
-
-
 			MainPage = new HomePage();
+
 		}
 
 		protected override void OnStart()

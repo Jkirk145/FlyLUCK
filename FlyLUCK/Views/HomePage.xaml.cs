@@ -17,10 +17,11 @@ namespace FlyLUCK
 		public HomePage()
 		{
 			InitializeComponent();
-				
+
 			//if this is the first login present the login page to capture the UserID
-			//if (Helpers.Settings.UserID.Length == 0)
+			if(DateTime.Now > Helpers.Settings.SessionExpires)
 			{
+
 				LoginPage lp = new LoginPage();
 				lp.LoggedIn += OnLoggedIn;
 				Navigation.PushModalAsync(lp);

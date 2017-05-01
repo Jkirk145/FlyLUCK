@@ -1,4 +1,5 @@
 // Helpers/Settings.cs
+using System;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 
@@ -24,8 +25,8 @@ namespace FlyLUCK.Helpers
 		private const string UserNameKey = "username_key";
 		private static readonly string UserNameDefault = string.Empty;
 
-    private const string UserIDKey = "userid_key";
-    private static readonly string UserIDDefault = string.Empty;
+    	private const string UserIDKey = "userid_key";
+    	private static readonly string UserIDDefault = string.Empty;
 
 		private const string FlightCrewKey = "flightcrew_key";
 		private static readonly bool FlightCrewDefault = false;
@@ -33,7 +34,37 @@ namespace FlyLUCK.Helpers
 		private const string PaxIDKey = "paxid_key";
 		private static readonly string PaxIDDefault = "2";
 
-    #endregion
+		private const string AccessTokenKey = "accesstoken_key";
+		private static readonly string AccessTokenDefault = string.Empty;
+
+		private const string SessionExpiresKey = "sessionexpires_key";
+		private static readonly DateTime SessionExpiresDefault = new DateTime(1990, 12, 31);
+
+    	#endregion
+
+		public static DateTime SessionExpires
+		{
+			get
+			{
+				return AppSettings.GetValueOrDefault<DateTime>(SessionExpiresKey, SessionExpiresDefault);
+			}
+			set
+			{
+				AppSettings.AddOrUpdateValue<DateTime>(SessionExpiresKey, value);
+			}
+		}
+
+		public static string AccessToken
+		{
+			get
+			{
+				return AppSettings.GetValueOrDefault<string>(AccessTokenKey, AccessTokenDefault);
+			}
+			set 
+			{
+				AppSettings.AddOrUpdateValue<string>(AccessTokenKey, value);
+			}
+		}
 
 		public static string UserName
 		{
@@ -47,17 +78,17 @@ namespace FlyLUCK.Helpers
 			}
 		}
 
-    public static string UserID
-    {
-      get
-      {
-        return AppSettings.GetValueOrDefault<string>(UserIDKey, UserIDDefault);
-      }
-      set
-      {
-        AppSettings.AddOrUpdateValue<string>(UserIDKey, value);
-      }
-    }
+	    public static string UserID
+	    {
+	      get
+	      {
+	        return AppSettings.GetValueOrDefault<string>(UserIDKey, UserIDDefault);
+	      }
+	      set
+	      {
+	        AppSettings.AddOrUpdateValue<string>(UserIDKey, value);
+	      }
+	    }
 
 		public static bool FlightCrew
 		{

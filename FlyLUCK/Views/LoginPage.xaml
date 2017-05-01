@@ -14,9 +14,8 @@
 	            <Image Source="login_background.jpeg" Aspect="AspectFill" />
 	            <!-- Place here the rest of the layout for the page. -->
 				<StackLayout VerticalOptions="CenterAndExpand" Padding="20" Spacing="30" >
-					<Label HorizontalTextAlignment="Center" Text="Please enter your email address to begin." FontSize="18" TextColor="Silver" />
-					<Entry x:Name="userID" BackgroundColor="Transparent" FontSize="18" TextColor="Silver" Placeholder="email address" PlaceholderColor="Silver" Opacity="0.8" />
-					<Button FontSize="18" Text="Login" TextColor="Silver" BackgroundColor="Transparent" Clicked="Handle_Clicked" />
+					<Label HorizontalTextAlignment="Center" Text="Please log in to begin." FontSize="18" TextColor="Silver" />
+					<Button FontSize="18" Text="Login" TextColor="Silver" BackgroundColor="Transparent" Clicked="AuthenticateAD" />
 				</StackLayout>
 	        </Grid >
 		</AbsoluteLayout>

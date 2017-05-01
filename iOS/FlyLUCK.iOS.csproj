@@ -172,6 +172,12 @@
     <Reference Include="Xamarin.Forms.Maps.iOS">
       <HintPath>..\packages\Xamarin.Forms.Maps.2.3.4.231\lib\Xamarin.iOS10\Xamarin.Forms.Maps.iOS.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.13.9\lib\Xamarin.iOS10\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory.Platform">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.13.9\lib\Xamarin.iOS10\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FlyLUCK\FlyLUCK.csproj">
@@ -182,12 +188,10 @@
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\flyLUCK_icon152.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\flyLUCK_icon167.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\appicon57.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\appicon114.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\appicon120.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\appicon180.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\appicon120.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -205,6 +209,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Authenticator.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Luck_Aviation_Logo3.png" />
@@ -229,6 +234,7 @@
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="azure-messaging">

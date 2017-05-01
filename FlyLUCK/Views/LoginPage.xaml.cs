@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 using FlyLUCK.ViewModels;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
 
 namespace FlyLUCK
 {
@@ -13,12 +14,35 @@ namespace FlyLUCK
 		private CalendarViewModel vm { get; set; }
 		public event EventHandler LoggedIn;
 
+		//used for AD Authentication
+		public static string clientId = "5891d5b7-1744-44b1-be7f-173233c6a829";
+		public static string authority = "https://login.windows.net/common/";
+		public static string returnUri = "http://flyluck";
+		private const string apiResourceUri = "https://graph.windows.net";
+		private AuthenticationResult authResult = null;
+
 		private void OnLoggedIn()
 		{
 			if (LoggedIn != null)
 				LoggedIn(this, EventArgs.Empty);
 		}
 
+		async void AuthenticateAD(object sender, System.EventArgs e)
+		{
+			//await Navigation.PopModalAsync();
+			var auth = DependencyService.Get<IAuthenticator>();
+			authResult = await auth.Authenticate(authority, apiResourceUri, clientId, returnUri);
+			var userName = authResult.UserInfo.GivenName + " " + authResult.UserInfo.FamilyName;
+			Helpers.Settings.UserName = userName;
+			Helpers.Settings.UserID = authResult.UserInfo.DisplayableId;
+			Helpers.Settings.AccessToken = authResult.AccessToken;
+			if (authResult.UserInfo.PasswordExpiresOn < DateTime.Now.AddDays(30))
+				Helpers.Settings.SessionExpires = Convert.ToDateTime(authResult.UserInfo.PasswordExpiresOn);
+			else
+				Helpers.Settings.SessionExpires = DateTime.Now.AddDays(30);
+            LoggedIn(this, e);
+			await Navigation.PopModalAsync();
+		}
 
 		async void Handle_Clicked(object sender, System.EventArgs e)
 		{
