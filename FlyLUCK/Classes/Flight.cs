@@ -68,6 +68,7 @@ namespace FlyLUCK
 		public string NAME { get; set; }
 		public string EMAIL { get; set; }
 		public string DEPT { get; set; }
+		public string USERID { get; set; }
 
 	}
 }

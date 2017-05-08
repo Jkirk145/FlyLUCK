@@ -45,6 +45,8 @@ namespace FlyLUCK
 
 		void SendMessage(object sender, EventArgs e)
 		{
+
+
 			try
 			{
 				Device.OpenUri(new Uri(String.Format("sms:{0}", _crewcontact)));
@@ -372,11 +374,19 @@ namespace FlyLUCK
 			closePage.BackgroundColor = Color.Transparent;
 			sendCrewMessage.BackgroundColor = Color.Transparent;
 
+
 			closePage.Clicked += Handle_Clicked;
 			sendCrewMessage.Clicked += SendMessage;
 
 			buttonbar.Children.Add(closePage, 0, 0);
 			buttonbar.Children.Add(sendCrewMessage, 1, 0);
+
+			if (Helpers.Settings.FlightCrew)
+			{
+				Button sendPushNotification = new Button { Image = "message.png" };
+				sendPushNotification.BackgroundColor = Color.Transparent;
+				buttonbar.Children.Add(sendPushNotification, 2, 0);
+			}
 
 			vm.IsLoading = false;
 		}

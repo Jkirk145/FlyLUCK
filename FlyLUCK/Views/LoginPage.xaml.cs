@@ -29,6 +29,10 @@ namespace FlyLUCK
 
 		async void AuthenticateAD(object sender, System.EventArgs e)
 		{
+			vm = new CalendarViewModel();
+			BindingContext = vm;
+
+
 			//await Navigation.PopModalAsync();
 			var auth = DependencyService.Get<IAuthenticator>();
 			authResult = await auth.Authenticate(authority, apiResourceUri, clientId, returnUri);
@@ -36,10 +40,37 @@ namespace FlyLUCK
 			Helpers.Settings.UserName = userName;
 			Helpers.Settings.UserID = authResult.UserInfo.DisplayableId;
 			Helpers.Settings.AccessToken = authResult.AccessToken;
-			if (authResult.UserInfo.PasswordExpiresOn < DateTime.Now.AddDays(30))
+			/*if (authResult.UserInfo.PasswordExpiresOn < DateTime.Now.AddDays(30))
 				Helpers.Settings.SessionExpires = Convert.ToDateTime(authResult.UserInfo.PasswordExpiresOn);
 			else
-				Helpers.Settings.SessionExpires = DateTime.Now.AddDays(30);
+				Helpers.Settings.SessionExpires = DateTime.Now.AddDays(30);*/
+
+
+			//retrieve user data from BART
+			vm.IsLoading = true;
+			mainGrid.IsVisible = false;
+			HttpClient client = new HttpClient();
+			Uri url = new Uri(String.Format(Constants.ServiceUrl + "/getuserdata?email=" + Helpers.Settings.UserID, string.Empty));
+			string _userdata = await client.GetStringAsync(url);
+
+			if (_userdata != "[]")
+			{
+				var userobj = JsonConvert.DeserializeObject<List<User>>(_userdata);
+				if (userobj[0].CREWID != null)
+				{
+					Helpers.Settings.FlightCrew = true;
+					Helpers.Settings.PaxID = userobj[0].CREWID;
+				}
+				else if (userobj[0].CREWID == null && userobj[0].USERID != null)
+				{
+					Helpers.Settings.IsAdmin = true;
+					Helpers.Settings.PaxID = userobj[0].PAXID;
+				}
+				else
+					Helpers.Settings.PaxID = userobj[0].PAXID;
+			}
+
+
             LoggedIn(this, e);
 			await Navigation.PopModalAsync();
 		}

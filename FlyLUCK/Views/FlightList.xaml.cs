@@ -87,6 +87,8 @@ namespace FlyLUCK
 				Uri myflightsUrl;
 				if(Helpers.Settings.FlightCrew == true)
 					myflightsUrl = new Uri(String.Format(Constants.ServiceUrl + "/getcrewflights/" + paxID, string.Empty));
+				else if(Helpers.Settings.IsAdmin == true)
+					myflightsUrl = new Uri(String.Format(Constants.ServiceUrl + "/getflights?start=" + DateTime.Now + "&end=" + DateTime.Now.AddDays(7), string.Empty));
 				else
 					myflightsUrl = new Uri(String.Format(Constants.ServiceUrl + "/getflights/" + paxID, string.Empty));
 

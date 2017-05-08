@@ -40,6 +40,10 @@ namespace FlyLUCK.Helpers
 		private const string SessionExpiresKey = "sessionexpires_key";
 		private static readonly DateTime SessionExpiresDefault = new DateTime(1990, 12, 31);
 
+		private const string AdminKey = "admin_key";
+		private static readonly bool AdminDefault = false;
+
+
     	#endregion
 
 		public static DateTime SessionExpires
@@ -99,6 +103,18 @@ namespace FlyLUCK.Helpers
 			set
 			{
 				AppSettings.AddOrUpdateValue<bool>(FlightCrewKey, value);
+			}
+		}
+
+		public static bool IsAdmin
+		{
+			get
+			{
+				return AppSettings.GetValueOrDefault<bool>(AdminKey, AdminDefault);
+			}
+			set
+			{
+				AppSettings.AddOrUpdateValue<bool>(AdminKey, value);
 			}
 		}
 
