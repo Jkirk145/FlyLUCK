@@ -20,9 +20,9 @@
 						</Grid.RowDefinitions>
 					</Grid>
 				</StackLayout>
-				<!--<StackLayout HorizontalOptions="Center" x:Name="sl" VerticalOptions="EndAndExpand">
-					<Image Source="FlyLUCK_logo.png" />
-				</StackLayout>-->
+				<StackLayout HorizontalOptions="Center" x:Name="layoutAdmin">
+
+				</StackLayout>
 			</StackLayout>
 
 	</ContentPage.Content>

@@ -211,6 +211,7 @@
     <Compile Include="Helpers.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Authenticator.cs" />
+    <Compile Include="Registration.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Luck_Aviation_Logo3.png" />

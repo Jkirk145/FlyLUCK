@@ -40,10 +40,10 @@ namespace FlyLUCK
 			Helpers.Settings.UserName = userName;
 			Helpers.Settings.UserID = authResult.UserInfo.DisplayableId;
 			Helpers.Settings.AccessToken = authResult.AccessToken;
-			/*if (authResult.UserInfo.PasswordExpiresOn < DateTime.Now.AddDays(30))
+			if (authResult.UserInfo.PasswordExpiresOn < DateTime.Now.AddDays(30))
 				Helpers.Settings.SessionExpires = Convert.ToDateTime(authResult.UserInfo.PasswordExpiresOn);
 			else
-				Helpers.Settings.SessionExpires = DateTime.Now.AddDays(30);*/
+				Helpers.Settings.SessionExpires = DateTime.Now.AddDays(30);
 
 
 			//retrieve user data from BART
@@ -69,7 +69,6 @@ namespace FlyLUCK
 				else
 					Helpers.Settings.PaxID = userobj[0].PAXID;
 			}
-
 
             LoggedIn(this, e);
 			await Navigation.PopModalAsync();

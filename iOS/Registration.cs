@@ -1,38 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Foundation;
-using UIKit;
-using XLabs.Forms;
-using XLabs.Forms.Controls;
-using RoundedBoxView.Forms.Plugin.iOSUnified;
-using Syncfusion.SfCalendar.iOS;
-using Syncfusion.SfCalendar.XForms.iOS;
 using WindowsAzure.Messaging;
 using UserNotifications;
+using UIKit;
+using Foundation;
+using XLabs.Forms;
 
+[assembly: Xamarin.Forms.Dependency(typeof(FlyLUCK.iOS.Registration))]
 namespace FlyLUCK.iOS
 {
-
-
-	[Register("AppDelegate")]
-	public partial class AppDelegate : XFormsApplicationDelegate
+	public class Registration : IRegistration
 	{
+		private string _email;
 
 		private SBNotificationHub Hub { get; set; }
 
-		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
+		public Registration()
 		{
+		}
 
-			global::Xamarin.Forms.Forms.Init();
-			Xamarin.FormsMaps.Init();
+		public void Register(string email)
+		{
+			_email = email;
 
-			new SfCalendarRenderer();
-
-			RoundedBoxViewRenderer.Init();
-
-			/*
 			if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
 			{
 				var pushSettings = UIUserNotificationSettings.GetSettingsForTypes(
@@ -46,16 +35,9 @@ namespace FlyLUCK.iOS
 			{
 				UIRemoteNotificationType notificationTypes = UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge | UIRemoteNotificationType.Sound;
 				UIApplication.SharedApplication.RegisterForRemoteNotificationTypes(notificationTypes);
-			}*/
-
-			LoadApplication(new App());
-
-			return base.FinishedLaunching(app, options);
+			}
 		}
-
-
-
-
+		/*
 		public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
 		{
 			Hub = new SBNotificationHub(Constants.ConnectionString, Constants.NotificationHubPath);
@@ -68,7 +50,7 @@ namespace FlyLUCK.iOS
 					return;
 				}
 
-				string[] tagList = { Helpers.Settings.UserID, "shuttleUpdates" };
+				string[] tagList = { _email, "shuttleUpdates" };
 				NSSet tags = new NSSet(tagList);
 				Hub.RegisterNativeAsync(deviceToken, tags, (errorCallback) =>
 				{
@@ -115,8 +97,6 @@ namespace FlyLUCK.iOS
 					}
 				}
 			}
-		}
-
+		}*/
 	}
 }
-

@@ -19,7 +19,7 @@ namespace FlyLUCK
 		string address;
 		private string _crewcontact = "";
 		private Flight _flight;
-
+		private List<Passenger> _passengers;
 		private CalendarViewModel vm { get; set; }
 
 		void Handle_Clicked(object sender, System.EventArgs e)
@@ -43,9 +43,18 @@ namespace FlyLUCK
 
 		}
 
+		void SendPush(object sender, EventArgs e)
+		{
+			SendMessage sm = new SendMessage(_passengers);
+			Navigation.PushModalAsync(sm);
+			//call REST service to get crew info
+			//HttpClient client = new HttpClient();
+			//Uri url = new Uri(String.Format(Constants.ServiceUrl + "/sendmessage?message={\n    \"aps\" : { \"alert\" : \"Message received from Bob\" }}&tags=john.kirksey@luckcompanies.com", string.Empty));
+			//var result = client.GetStringAsync(url);
+		}
+
 		void SendMessage(object sender, EventArgs e)
 		{
-
 
 			try
 			{
@@ -266,12 +275,12 @@ namespace FlyLUCK
 			//call REST service to get crew info
 			Uri paxUrl = new Uri(String.Format(Constants.ServiceUrl + "/getpax/" + _flight.LEGID, string.Empty));
 			string _paxdata = await client.GetStringAsync(paxUrl);
-			var paxobj = JsonConvert.DeserializeObject<List<Passenger>>(_paxdata);
+			_passengers = JsonConvert.DeserializeObject<List<Passenger>>(_paxdata);
 
 			ListView paxListView = new ListView
 			{
 				RowHeight = 20,
-				ItemsSource = paxobj,
+				ItemsSource = _passengers,
 				ItemTemplate = new DataTemplate(() =>
 			   		{
 						   Label lbl = new Label();
@@ -384,6 +393,7 @@ namespace FlyLUCK
 			if (Helpers.Settings.FlightCrew)
 			{
 				Button sendPushNotification = new Button { Image = "message.png" };
+				sendPushNotification.Clicked += SendPush;
 				sendPushNotification.BackgroundColor = Color.Transparent;
 				buttonbar.Children.Add(sendPushNotification, 2, 0);
 			}

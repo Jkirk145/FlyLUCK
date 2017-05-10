@@ -11,7 +11,10 @@ namespace FlyLUCK
 
 		public void OnLoggedIn(object sender, EventArgs e)
 		{
-			welcomeLabel.Text = "Welcome " + Helpers.Settings.UserName;	
+			welcomeLabel.Text = "Welcome " + Helpers.Settings.UserName;
+			if (Helpers.Settings.FlightCrew || Helpers.Settings.IsAdmin)
+				layoutAdmin.IsVisible = true;
+			DependencyService.Get<IRegistration>().Register(Helpers.Settings.UserID);
 		}
 
 		public HomePage()
@@ -19,12 +22,16 @@ namespace FlyLUCK
 			InitializeComponent();
 
 			//if this is the first login present the login page to capture the UserID
-			if(DateTime.Now > Helpers.Settings.SessionExpires)
+			if (DateTime.Now > Helpers.Settings.SessionExpires)
 			{
 
 				LoginPage lp = new LoginPage();
 				lp.LoggedIn += OnLoggedIn;
 				Navigation.PushModalAsync(lp);
+			}
+			else //already logged in, register for notifications
+			{
+				DependencyService.Get<IRegistration>().Register(Helpers.Settings.UserID);
 			}
 
 			welcomeLabel.Text = "Welcome " + Helpers.Settings.UserName;
@@ -33,6 +40,7 @@ namespace FlyLUCK
 			Button openMyFlights = new Button { Image = "myflights2.png" };
 			Button newFlight = new Button { Image = "submit.png" };
 			Button aboutUs = new Button { Image = "information.png" };
+			Button sendMessage = new Button { Image = "message.png" };
 
 			openCalendar.HeightRequest = 60;
 			openCalendar.VerticalOptions = LayoutOptions.Center;
@@ -81,6 +89,20 @@ namespace FlyLUCK
 			mainGrid.Children.Add(sl3, 0, 1);
 			mainGrid.Children.Add(sl4, 1, 1);
 
+			sendMessage.HeightRequest = 60;
+			sendMessage.BackgroundColor = Color.Transparent;
+			sendMessage.Clicked += SendPush;
+			layoutAdmin.Children.Add(sendMessage);
+			layoutAdmin.Children.Add(new Label { Text = "Send Push", FontSize = 12, HorizontalTextAlignment = TextAlignment.Center });
+
+			if (Helpers.Settings.FlightCrew || Helpers.Settings.IsAdmin)
+				layoutAdmin.IsVisible = true;
+
+		}
+
+		async void SendPush(object sender, EventArgs e)
+		{
+			await Navigation.PushModalAsync(new SendMessage());
 		}
 
 		async void OpenMyFlights(object sender, EventArgs e)

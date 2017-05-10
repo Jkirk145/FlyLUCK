@@ -31,9 +31,6 @@
   <ItemGroup>
     <EmbeddedResource Include="App.xaml" />
     <EmbeddedResource Include="FlyLUCKPage.xaml" />
-    <EmbeddedResource Include="SendMessage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="SearchPlaces.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -64,6 +61,13 @@
     </Compile>
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Classes\IAuthenticator.cs" />
+    <EmbeddedResource Include="Views\SendMessage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <Compile Include="Views\SendMessage.xaml.cs">
+      <DependentUpon>SendMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IRegistration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -73,9 +77,6 @@
       <DependentUpon>FlyLUCKPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SendMessage.xaml.cs">
-      <DependentUpon>SendMessage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Messaging.cs" />
     <Compile Include="IMessenger.cs" />
     <Compile Include="SearchPlaces.xaml.cs">

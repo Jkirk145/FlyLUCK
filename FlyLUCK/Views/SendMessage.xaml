@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FlyLUCK.SendMessage">
+	<ContentPage.Content>
+		<AbsoluteLayout>
+		<Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.4">
+			<StackLayout BackgroundColor="Silver" Padding="1" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+				<Editor x:Name="messageBody" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+			</StackLayout>
+
+		</Grid>
+		<Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,1,0.8,0.1" x:Name="buttonbar">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="35" />
+			</Grid.RowDefinitions>
+			<Button Grid.Row="0" Grid.Column="0" Image="prev.png" Clicked="ClosePage" HorizontalOptions="StartAndExpand"/>
+			<Button Grid.Row="0" Grid.Column="1" Image="message.png" BackgroundColor="Transparent" Clicked="Send" />
+		</Grid>
+		</AbsoluteLayout>
+	</ContentPage.Content>
+</ContentPage>

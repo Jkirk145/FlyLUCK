@@ -102,8 +102,6 @@ namespace FlyLUCK
 		private async Task<bool> SendRequest()
 		{
 
-
-
 			FlyLUCK.Request request = new Request();
 			request.Subject = "New Flight Request [Mobile - TEST]";
 			request.Destination = search.Text;
@@ -121,17 +119,7 @@ namespace FlyLUCK
 
 			HttpClient client = new HttpClient();
 
-
-			/*string body = "Flight Request Form\nDestination: " + search.Text +
-							"\nDepart: " + start.Date.ToString() + "\nArrive: " + end.Date.ToString() +
-																	   "\nRental Car: " + (rentalCar.IsToggled ? "Y" : "N") +
-																	   "\n# of Passengers: " + numPax.Items[numPax.SelectedIndex] +
-																	   "\nSpecial Requests: " + specials.Text +
-							"\nPurpose of trip: " + purpose.Text +
-																	   "\nRequestor: " + requestor.Text;*/
-
 			client.MaxResponseContentBufferSize = 512000;
-
 
 			try
 			{
@@ -168,9 +156,11 @@ namespace FlyLUCK
 			specials = new Editor();
 			specials.HeightRequest = 100;
 
+			//when a user selects a start date change the return date to match.
+			start.DateSelected += (sender, e) => { end.Date = start.Date; };
+
 			for (int i = 1; i <= 8; i++)
 				numPax.Items.Add(i.ToString());
-
 
 			RowDefinition row1 = new RowDefinition();
 			RowDefinition row2 = new RowDefinition();
@@ -190,9 +180,7 @@ namespace FlyLUCK
 			row5.Height = 40;
 			row6.Height = 40;
 			row7.Height = 40;
-
 			row9.Height = 40;
-
 
 			grid.RowDefinitions.Add(row1);
 			grid.RowDefinitions.Add(row2);
@@ -204,7 +192,6 @@ namespace FlyLUCK
 			grid.RowDefinitions.Add(row8);
 			grid.RowDefinitions.Add(row9);
 			grid.RowDefinitions.Add(row10);
-
 
 			start.Format = "ddd MMM dd";
 			end.Format = "ddd MMM dd";
@@ -259,8 +246,6 @@ namespace FlyLUCK
 			ScrollView sv = new ScrollView { Orientation = ScrollOrientation.Vertical, HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand };
 			sv.Content = grid;
 			layout.Children.Add(sv);
-
-
 
 			//Button bar ******************************************************
 

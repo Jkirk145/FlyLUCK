@@ -58,6 +58,7 @@ namespace FlyLUCK
 	{
 		public string PAXNAME { get; set; }
 		public string CELLPHONE { get; set; }
+		public string EMAIL { get; set; }
 	}
 
 	[Preserve(AllMembers = true)]
