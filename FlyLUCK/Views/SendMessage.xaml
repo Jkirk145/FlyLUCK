@@ -10,10 +10,10 @@
 		</Grid>
 		<Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,1,0.8,0.1" x:Name="buttonbar">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="35" />
+				<RowDefinition Height="*" />
 			</Grid.RowDefinitions>
-			<Button Grid.Row="0" Grid.Column="0" Image="prev.png" Clicked="ClosePage" HorizontalOptions="StartAndExpand"/>
-			<Button Grid.Row="0" Grid.Column="1" Image="message.png" BackgroundColor="Transparent" Clicked="Send" />
+			<Button Grid.Row="0" Grid.Column="0" Image="prev.png" HeightRequest="35" BackgroundColor="Transparent" Clicked="ClosePage" />
+			<Button Grid.Row="0" Grid.Column="1" Image="message_small.png" HeightRequest="35" BackgroundColor="Transparent" Clicked="Send" />
 		</Grid>
 		</AbsoluteLayout>
 	</ContentPage.Content>

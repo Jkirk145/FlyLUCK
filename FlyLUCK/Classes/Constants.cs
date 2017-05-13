@@ -13,5 +13,7 @@ namespace FlyLUCK
 		// Azure app-specific connection string and hub path
 		public const string ConnectionString = "Endpoint=sb://flyluckns.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=CsN55kouxy4zT/O1NvQbkI0pRRp0/TBi8TyEYdZRAPE=";
 		public const string NotificationHubPath = "flyluckhub";
+		//GCM
+		public const string SenderID = "201864775991"; // Google API Project Number
 	}
 }

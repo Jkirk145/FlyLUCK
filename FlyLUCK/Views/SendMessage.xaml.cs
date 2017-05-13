@@ -37,13 +37,44 @@ namespace FlyLUCK
 			this.Navigation.PopModalAsync();
 		}
 
-		void Send(object sender, EventArgs e)
+		async void Send(object sender, EventArgs e)
 		{
-			
-			//call REST service to get crew info
-			HttpClient client = new HttpClient();
-			Uri url = new Uri(Constants.ServiceUrl + "/sendmessage?message={\"aps\":{\"alert\":\"" + messageBody.Text + "\"}}&tags=" + _tags);
-			var result = client.GetStringAsync(url);
+			ActivityView av = new ActivityView();
+			await this.Navigation.PushModalAsync(av);
+			bool success = await SendRequest();
+			await this.Navigation.PopModalAsync();
+			if (success)
+			{
+				await DisplayAlert("Success!", "Your push notification was sent.", "OK");
+				await this.Navigation.PopModalAsync();
+			}
+			else
+			{
+				await DisplayAlert("Uh oh....", "There was an error processing your request! Please try again.", "OK");
+			}
+		}
+
+		private async Task<bool> SendRequest()
+		{
+			try
+			{
+				Uri url;
+				//call REST service to get crew info
+				HttpClient client = new HttpClient();
+				url = new Uri(Constants.ServiceUrl + "/sendmessage?message=" + messageBody.Text + "&tags=" + _tags);
+
+				var result = client.GetAsync(url).Result;
+				if (result.IsSuccessStatusCode)
+				{
+					return true;
+				}
+			}
+			catch (Exception ex)
+			{
+				await DisplayAlert("ERROR!", ex.ToString(), "Close");
+				return false;
+			}
+			return false;
 		}
 
 

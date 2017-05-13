@@ -14,7 +14,7 @@ namespace FlyLUCK
 			welcomeLabel.Text = "Welcome " + Helpers.Settings.UserName;
 			if (Helpers.Settings.FlightCrew || Helpers.Settings.IsAdmin)
 				layoutAdmin.IsVisible = true;
-			DependencyService.Get<IRegistration>().Register(Helpers.Settings.UserID);
+			DependencyService.Get<IRegistration>().Register();
 		}
 
 		public HomePage()
@@ -31,7 +31,7 @@ namespace FlyLUCK
 			}
 			else //already logged in, register for notifications
 			{
-				DependencyService.Get<IRegistration>().Register(Helpers.Settings.UserID);
+				DependencyService.Get<IRegistration>().Register();
 			}
 
 			welcomeLabel.Text = "Welcome " + Helpers.Settings.UserName;
