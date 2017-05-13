@@ -30,6 +30,7 @@ namespace FlyLUCK.Droid
 			global::Microsoft.IdentityModel.Clients.ActiveDirectory.Resource.Id.agentWebView = global::FlyLUCK.Droid.Resource.Id.agentWebView;
 			global::Microsoft.IdentityModel.Clients.ActiveDirectory.Resource.Layout.WebAuthenticationBroker = global::FlyLUCK.Droid.Resource.Layout.WebAuthenticationBroker;
 			global::Microsoft.IdentityModel.Clients.ActiveDirectory.Resource.String.ApplicationName = global::FlyLUCK.Droid.Resource.String.ApplicationName;
+			global::Gcm.Client.Resource.String.library_name = global::FlyLUCK.Droid.Resource.String.library_name;
 		}
 		
 		public partial class Animation
@@ -2263,8 +2264,8 @@ namespace FlyLUCK.Droid
 			// aapt resource value: 0x7f020080
 			public const int FlyLUCK_logo = 2130837632;
 			
-			// aapt resource value: 0x7f0200e7
-			public const int focused = 2130837735;
+			// aapt resource value: 0x7f0200e9
+			public const int focused = 2130837737;
 			
 			// aapt resource value: 0x7f020081
 			public const int ic_audiotrack = 2130837633;
@@ -2417,163 +2418,169 @@ namespace FlyLUCK.Droid
 			public const int ic_expand_00015 = 2130837682;
 			
 			// aapt resource value: 0x7f0200b3
-			public const int ic_media_pause = 2130837683;
+			public const int ic_launcher = 2130837683;
 			
 			// aapt resource value: 0x7f0200b4
-			public const int ic_media_play = 2130837684;
+			public const int ic_media_pause = 2130837684;
 			
 			// aapt resource value: 0x7f0200b5
-			public const int ic_media_route_disabled_mono_dark = 2130837685;
+			public const int ic_media_play = 2130837685;
 			
 			// aapt resource value: 0x7f0200b6
-			public const int ic_media_route_off_mono_dark = 2130837686;
+			public const int ic_media_route_disabled_mono_dark = 2130837686;
 			
 			// aapt resource value: 0x7f0200b7
-			public const int ic_media_route_on_0_mono_dark = 2130837687;
+			public const int ic_media_route_off_mono_dark = 2130837687;
 			
 			// aapt resource value: 0x7f0200b8
-			public const int ic_media_route_on_1_mono_dark = 2130837688;
+			public const int ic_media_route_on_0_mono_dark = 2130837688;
 			
 			// aapt resource value: 0x7f0200b9
-			public const int ic_media_route_on_2_mono_dark = 2130837689;
+			public const int ic_media_route_on_1_mono_dark = 2130837689;
 			
 			// aapt resource value: 0x7f0200ba
-			public const int ic_media_route_on_mono_dark = 2130837690;
+			public const int ic_media_route_on_2_mono_dark = 2130837690;
 			
 			// aapt resource value: 0x7f0200bb
-			public const int ic_pause_dark = 2130837691;
+			public const int ic_media_route_on_mono_dark = 2130837691;
 			
 			// aapt resource value: 0x7f0200bc
-			public const int ic_pause_light = 2130837692;
+			public const int ic_pause_dark = 2130837692;
 			
 			// aapt resource value: 0x7f0200bd
-			public const int ic_play_dark = 2130837693;
+			public const int ic_pause_light = 2130837693;
 			
 			// aapt resource value: 0x7f0200be
-			public const int ic_play_light = 2130837694;
+			public const int ic_play_dark = 2130837694;
 			
 			// aapt resource value: 0x7f0200bf
-			public const int ic_speaker_dark = 2130837695;
+			public const int ic_play_light = 2130837695;
 			
 			// aapt resource value: 0x7f0200c0
-			public const int ic_speaker_group_dark = 2130837696;
+			public const int ic_speaker_dark = 2130837696;
 			
 			// aapt resource value: 0x7f0200c1
-			public const int ic_speaker_group_light = 2130837697;
+			public const int ic_speaker_group_dark = 2130837697;
 			
 			// aapt resource value: 0x7f0200c2
-			public const int ic_speaker_light = 2130837698;
+			public const int ic_speaker_group_light = 2130837698;
 			
 			// aapt resource value: 0x7f0200c3
-			public const int ic_tv_dark = 2130837699;
+			public const int ic_speaker_light = 2130837699;
 			
 			// aapt resource value: 0x7f0200c4
-			public const int ic_tv_light = 2130837700;
+			public const int ic_tv_dark = 2130837700;
 			
 			// aapt resource value: 0x7f0200c5
-			public const int icon = 2130837701;
+			public const int ic_tv_light = 2130837701;
 			
 			// aapt resource value: 0x7f0200c6
-			public const int information = 2130837702;
+			public const int icon = 2130837702;
 			
 			// aapt resource value: 0x7f0200c7
-			public const int login_background = 2130837703;
+			public const int information = 2130837703;
 			
 			// aapt resource value: 0x7f0200c8
-			public const int Luck_Aviation_Logo3 = 2130837704;
+			public const int login_background = 2130837704;
 			
 			// aapt resource value: 0x7f0200c9
-			public const int Luck_Aviation_Logo4 = 2130837705;
+			public const int Luck_Aviation_Logo3 = 2130837705;
 			
 			// aapt resource value: 0x7f0200ca
-			public const int map_marker = 2130837706;
+			public const int Luck_Aviation_Logo4 = 2130837706;
 			
 			// aapt resource value: 0x7f0200cb
-			public const int message = 2130837707;
+			public const int map_marker = 2130837707;
 			
 			// aapt resource value: 0x7f0200cc
-			public const int month_current_date_circle = 2130837708;
+			public const int message = 2130837708;
 			
 			// aapt resource value: 0x7f0200cd
-			public const int month_selected_item = 2130837709;
+			public const int message_small = 2130837709;
 			
 			// aapt resource value: 0x7f0200ce
-			public const int month_view_item_border = 2130837710;
+			public const int month_current_date_circle = 2130837710;
 			
 			// aapt resource value: 0x7f0200cf
-			public const int mr_dialog_material_background_dark = 2130837711;
+			public const int month_selected_item = 2130837711;
 			
 			// aapt resource value: 0x7f0200d0
-			public const int mr_dialog_material_background_light = 2130837712;
+			public const int month_view_item_border = 2130837712;
 			
 			// aapt resource value: 0x7f0200d1
-			public const int mr_ic_audiotrack_light = 2130837713;
+			public const int mr_dialog_material_background_dark = 2130837713;
 			
 			// aapt resource value: 0x7f0200d2
-			public const int mr_ic_cast_dark = 2130837714;
+			public const int mr_dialog_material_background_light = 2130837714;
 			
 			// aapt resource value: 0x7f0200d3
-			public const int mr_ic_cast_light = 2130837715;
+			public const int mr_ic_audiotrack_light = 2130837715;
 			
 			// aapt resource value: 0x7f0200d4
-			public const int mr_ic_close_dark = 2130837716;
+			public const int mr_ic_cast_dark = 2130837716;
 			
 			// aapt resource value: 0x7f0200d5
-			public const int mr_ic_close_light = 2130837717;
+			public const int mr_ic_cast_light = 2130837717;
 			
 			// aapt resource value: 0x7f0200d6
-			public const int mr_ic_media_route_connecting_mono_dark = 2130837718;
+			public const int mr_ic_close_dark = 2130837718;
 			
 			// aapt resource value: 0x7f0200d7
-			public const int mr_ic_media_route_connecting_mono_light = 2130837719;
+			public const int mr_ic_close_light = 2130837719;
 			
 			// aapt resource value: 0x7f0200d8
-			public const int mr_ic_media_route_mono_dark = 2130837720;
+			public const int mr_ic_media_route_connecting_mono_dark = 2130837720;
 			
 			// aapt resource value: 0x7f0200d9
-			public const int mr_ic_media_route_mono_light = 2130837721;
+			public const int mr_ic_media_route_connecting_mono_light = 2130837721;
 			
 			// aapt resource value: 0x7f0200da
-			public const int mr_ic_pause_dark = 2130837722;
+			public const int mr_ic_media_route_mono_dark = 2130837722;
 			
 			// aapt resource value: 0x7f0200db
-			public const int mr_ic_pause_light = 2130837723;
+			public const int mr_ic_media_route_mono_light = 2130837723;
 			
 			// aapt resource value: 0x7f0200dc
-			public const int mr_ic_play_dark = 2130837724;
+			public const int mr_ic_pause_dark = 2130837724;
 			
 			// aapt resource value: 0x7f0200dd
-			public const int mr_ic_play_light = 2130837725;
+			public const int mr_ic_pause_light = 2130837725;
 			
 			// aapt resource value: 0x7f0200de
-			public const int myflights2 = 2130837726;
+			public const int mr_ic_play_dark = 2130837726;
 			
 			// aapt resource value: 0x7f0200df
-			public const int newflight = 2130837727;
+			public const int mr_ic_play_light = 2130837727;
 			
 			// aapt resource value: 0x7f0200e0
-			public const int newflight35 = 2130837728;
+			public const int myflights2 = 2130837728;
 			
 			// aapt resource value: 0x7f0200e1
-			public const int next = 2130837729;
-			
-			// aapt resource value: 0x7f0200e6
-			public const int notification_template_icon_bg = 2130837734;
+			public const int newflight = 2130837729;
 			
 			// aapt resource value: 0x7f0200e2
-			public const int prev = 2130837730;
-			
-			// aapt resource value: 0x7f0200e8
-			public const int selected = 2130837736;
+			public const int newflight35 = 2130837730;
 			
 			// aapt resource value: 0x7f0200e3
-			public const int sendMessage = 2130837731;
+			public const int next = 2130837731;
+			
+			// aapt resource value: 0x7f0200e8
+			public const int notification_template_icon_bg = 2130837736;
 			
 			// aapt resource value: 0x7f0200e4
-			public const int sendMessage2 = 2130837732;
+			public const int prev = 2130837732;
+			
+			// aapt resource value: 0x7f0200ea
+			public const int selected = 2130837738;
 			
 			// aapt resource value: 0x7f0200e5
-			public const int submit = 2130837733;
+			public const int sendMessage = 2130837733;
+			
+			// aapt resource value: 0x7f0200e6
+			public const int sendMessage2 = 2130837734;
+			
+			// aapt resource value: 0x7f0200e7
+			public const int submit = 2130837735;
 			
 			static Drawable()
 			{
@@ -3387,8 +3394,8 @@ namespace FlyLUCK.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f070045
-			public const int ApplicationName = 2131165253;
+			// aapt resource value: 0x7f070047
+			public const int ApplicationName = 2131165255;
 			
 			// aapt resource value: 0x7f070031
 			public const int abc_action_bar_home_description = 2131165233;
@@ -3446,6 +3453,9 @@ namespace FlyLUCK.Droid
 			
 			// aapt resource value: 0x7f070043
 			public const int abc_toolbar_collapse_description = 2131165251;
+			
+			// aapt resource value: 0x7f070045
+			public const int app_name = 2131165253;
 			
 			// aapt resource value: 0x7f07002e
 			public const int appbar_scrolling_view_behavior = 2131165230;
@@ -3549,6 +3559,9 @@ namespace FlyLUCK.Droid
 			// aapt resource value: 0x7f07001b
 			public const int common_signin_button_text_long = 2131165211;
 			
+			// aapt resource value: 0x7f070046
+			public const int library_name = 2131165254;
+			
 			// aapt resource value: 0x7f07001f
 			public const int mr_button_content_description = 2131165215;
 			
@@ -3594,8 +3607,8 @@ namespace FlyLUCK.Droid
 			// aapt resource value: 0x7f07002d
 			public const int mr_user_route_category_name = 2131165229;
 			
-			// aapt resource value: 0x7f070046
-			public const int sfcalendar_inlineviewnoappointmenttext = 2131165254;
+			// aapt resource value: 0x7f070048
+			public const int sfcalendar_inlineviewnoappointmenttext = 2131165256;
 			
 			// aapt resource value: 0x7f070044
 			public const int status_bar_notification_info_overflow = 2131165252;

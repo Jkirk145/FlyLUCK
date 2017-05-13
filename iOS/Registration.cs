@@ -10,7 +10,6 @@ namespace FlyLUCK.iOS
 {
 	public class Registration : IRegistration
 	{
-		private string _email;
 
 		private SBNotificationHub Hub { get; set; }
 
@@ -18,9 +17,8 @@ namespace FlyLUCK.iOS
 		{
 		}
 
-		public void Register(string email)
+		public void Register()
 		{
-			_email = email;
 
 			if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
 			{

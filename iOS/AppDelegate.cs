@@ -53,11 +53,16 @@ namespace FlyLUCK.iOS
 			return base.FinishedLaunching(app, options);
 		}
 
-
-
+		public override void OnActivated(UIApplication application)
+		{
+			base.OnActivated(application);
+			application.ApplicationIconBadgeNumber = 0;
+		}
 
 		public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
 		{
+			
+
 			Hub = new SBNotificationHub(Constants.ConnectionString, Constants.NotificationHubPath);
 
 			Hub.UnregisterAllAsync(deviceToken, (error) =>
@@ -114,6 +119,7 @@ namespace FlyLUCK.iOS
 						avAlert.Show();
 					}
 				}
+
 			}
 		}
 

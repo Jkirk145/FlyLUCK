@@ -233,6 +233,7 @@
     <BundleResource Include="Resources\Luck_Aviation_Logo4.png" />
     <BundleResource Include="Resources\login_background.jpeg" />
     <BundleResource Include="Resources\FlyLUCK_logo.png" />
+    <BundleResource Include="Resources\message_small.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
