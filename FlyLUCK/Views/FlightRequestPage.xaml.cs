@@ -113,7 +113,7 @@ namespace FlyLUCK
 			request.Purpose = purpose.Text;
 			request.Requestor = requestor.Text;
 			request.RentalCar = (rentalCar.IsToggled ? "Y" : "N");
-			request.Specials = specials.Text;
+			request.Specials = specials.Text.Replace(".", " ");
 
 			string body = "{" + JsonConvert.SerializeObject(request) + "}";
 
@@ -123,7 +123,7 @@ namespace FlyLUCK
 
 			try
 			{
-				var uri = new Uri(String.Format(Constants.ServiceUrl + "/sendmail/" + body, string.Empty));
+				var uri = new Uri(String.Format(Constants.ServiceUrl + "/sendmail/" + body + "/", string.Empty));
 				var response = client.GetAsync(uri).Result;
 				if (response.IsSuccessStatusCode)
 				{

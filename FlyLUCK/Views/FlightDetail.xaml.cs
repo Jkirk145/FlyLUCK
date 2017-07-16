@@ -365,11 +365,11 @@ namespace FlyLUCK
 			MapSpan.FromCenterAndRadius(
 					new Position(x, y), Distance.FromMiles(2.0)))
 			{
-				IsShowingUser = true,
-				HeightRequest = 160,
-				WidthRequest = 160,
+				HeightRequest = 180,
+				WidthRequest = 180,
 				VerticalOptions = LayoutOptions.FillAndExpand
 			};
+			map.HasZoomEnabled = false;
 			map.MapType = MapType.Street;
 
 			DetailGrid.Children.Add(map, 3, 12);
@@ -390,9 +390,9 @@ namespace FlyLUCK
 			buttonbar.Children.Add(closePage, 0, 0);
 			buttonbar.Children.Add(sendCrewMessage, 1, 0);
 
-			if (Helpers.Settings.FlightCrew)
+			if (Helpers.Settings.FlightCrew || Helpers.Settings.IsAdmin)
 			{
-				Button sendPushNotification = new Button { Image = "message.png" };
+				Button sendPushNotification = new Button { Image = "message_small.png" };
 				sendPushNotification.Clicked += SendPush;
 				sendPushNotification.BackgroundColor = Color.Transparent;
 				buttonbar.Children.Add(sendPushNotification, 2, 0);
@@ -403,8 +403,6 @@ namespace FlyLUCK
 
 		public async void GetPosition(string pinLabel)
 		{
-
-
 
 			Geocoder gcoder = new Geocoder();
 			double x = 0.0, y = 0.0;

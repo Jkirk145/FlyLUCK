@@ -52,25 +52,34 @@ namespace FlyLUCK
 			StackLayout sl = new StackLayout { HorizontalOptions = LayoutOptions.FillAndExpand };
 			vm.IsLoading = true;
 			var myFlightData = await GetFlights();
-			var myFlightObj = JsonConvert.DeserializeObject<List<Flight>>(myFlightData);
-			foreach (Flight f in myFlightObj)
+			if (myFlightData.Length > 3)
 			{
-				DateTime depart = Convert.ToDateTime(f.LOCALLEAVE);
-				CardView cv = new CardView(f.FROMCITY, f.TOCITY, f.FROMSTATE, f.TOSTATE, depart.ToString("d"), depart.ToString("t"));
-				var tapped = new TapGestureRecognizer();
-
-				tapped.Tapped += (sender, e) =>
+				var myFlightObj = JsonConvert.DeserializeObject<List<Flight>>(myFlightData);
+				foreach (Flight f in myFlightObj)
 				{
-					OnTapped(sender, e);
-				};
-				tapped.CommandParameter = f;
-				cv.GestureRecognizers.Add(tapped);
-				layout.Children.Add(cv);
+					DateTime depart = Convert.ToDateTime(f.LOCALLEAVE);
+					CardView cv = new CardView(f.FROMCITY, f.TOCITY, f.FROMSTATE, f.TOSTATE, depart.ToString("d"), depart.ToString("t"));
+					var tapped = new TapGestureRecognizer();
 
-				//layout.Children.Add(new Label { Text = f.DEST });
+					tapped.Tapped += (sender, e) =>
+					{
+						OnTapped(sender, e);
+					};
+					tapped.CommandParameter = f;
+					cv.GestureRecognizers.Add(tapped);
+					layout.Children.Add(cv);
+
+					//layout.Children.Add(new Label { Text = f.DEST });
+				}
+
+				//flightList.Content = sl;
+
 			}
-
-			//flightList.Content = sl;
+			else
+			{
+				Label lblNoFlights = new Label { Text = "No flights found.", HorizontalTextAlignment=TextAlignment.Center, VerticalOptions=LayoutOptions.CenterAndExpand };
+				layout.Children.Add(lblNoFlights);
+			}
 			vm.IsLoading = false;
 			flightList.IsClippedToBounds = true;
 
@@ -84,6 +93,7 @@ namespace FlyLUCK
 
 			try
 			{
+				//call the appropriate REST api to get the list of flights based on audience: crew, admin, passenger (paxID)
 				Uri myflightsUrl;
 				if(Helpers.Settings.FlightCrew == true)
 					myflightsUrl = new Uri(String.Format(Constants.ServiceUrl + "/getcrewflights/" + paxID, string.Empty));
@@ -102,6 +112,7 @@ namespace FlyLUCK
 
 		}
 
+		//open the flight detail view and pass in the associated flight object
 		async void OnTapped(Object sender, EventArgs e)
 		{
 			Flight flt = (Flight)((TappedEventArgs)e).Parameter;

@@ -48,8 +48,8 @@ namespace FlyLUCK.Droid
 			Log.Verbose(MyBroadcastReceiver.TAG, "GCM Registered: " + registrationId);
 			RegistrationID = registrationId;
 
-			createNotification("PushHandlerService-GCM Registered...",
-								"The device has been Registered!");
+			//createNotification("PushHandlerService-GCM Registered...",
+			//					"The device has been Registered!");
 
 			Hub = new NotificationHub(Constants.NotificationHubPath, Constants.ConnectionString,
 										context);
@@ -90,7 +90,7 @@ namespace FlyLUCK.Droid
 			string messageText = intent.Extras.GetString("message");
 			if (!string.IsNullOrEmpty(messageText))
 			{
-				createNotification("New hub message!", messageText);
+				createNotification("FlyLUCK", messageText);
 			}
 			else
 			{

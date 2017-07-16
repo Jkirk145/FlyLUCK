@@ -123,7 +123,8 @@ namespace FlyLUCK
 				await DisplayAlert("Oops!", "There is a problem with your network connection. Please verify your settings and try again.", "Close");
 				return;
 			}
-			await Navigation.PushModalAsync(new Calendar());
+			//await Navigation.PushModalAsync(new Calendar());
+            await DisplayAlert("About Us", "The calendar is currently being updated. Thanks for your patience!", "Close");
 			return;
 		}
 

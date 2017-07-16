@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
-using Syncfusion.SfCalendar.XForms;
+using XamForms.Controls;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
@@ -25,15 +25,15 @@ namespace FlyLUCK
 		private List<string> _loadedMonths = null;
 		Label selectedDate = new Label();
 
-		SfCalendar calendar;
-		CalendarEventCollection col = new CalendarEventCollection();
+		XamForms.Controls.Calendar calendar;
+		//CalendarEventCollection col = new CalendarEventCollection();
 
 
 		private void ClosePage_Clicked(object sender, EventArgs e)
 		{
-			col.Clear();
+			//col.Clear();
 			_loadedMonths.Clear();
-			col = null;
+			//col = null;
 			this.Navigation.PopModalAsync();
 		}
 
@@ -50,12 +50,12 @@ namespace FlyLUCK
 
 			_loadedMonths = new List<string>();
 
-			calendar = new SfCalendar();
-			calendar.ShowInlineEvents = true;
-			calendar.SelectionMode = SelectionMode.SingleSelection;
+			calendar = new XamForms.Controls.Calendar();
+			//calendar.ShowInlineEvents = true;
+			//calendar.SelectionMode = SelectionMode.SingleSelection;
 			//calendar.OnCalendarTapped += DisplayFlight;
-			calendar.ShowNavigationButtons = true;
-			calendar.MonthChanged += LoadNewMonth;
+			//calendar.ShowNavigationButtons = true;
+			//calendar.MonthChanged += LoadNewMonth;
 
 			LoadFlights(DateTime.Now);
 			_loadedMonths.Add(DateTime.Now.Month.ToString());
@@ -98,14 +98,10 @@ namespace FlyLUCK
 			buttonbar.Children.Add(newFlightRequest, 1, 0);
 			//Grid.SetColumnSpan(selectedDate, 2);
 
-			calendar.MoveToDate = DateTime.Now;
+			//calendar.MoveToDate = DateTime.Now;
 		}
 
-		private void DisplayFlight(object sender, CalendarTappedEventArgs e)
-		{
-			//DisplayAlert("YO!", e.selectedAppointment.Subject, "Close");
-			selectedDate.Text = e.selectedAppointment.Subject;
-		}
+
 
 		protected override void OnAppearing()
 		{
@@ -133,20 +129,6 @@ namespace FlyLUCK
 
 		}
 
-		private void LoadNewMonth(object sender, MonthChangedEventArgs e)
-		{
-			DateTime currDate = e.args.CurrentValue;
-			DateTime prevDate = e.args.PreviousValue;
-
-			if (!_loadedMonths.Contains(currDate.Month.ToString()))
-			{
-				LoadFlights(currDate);
-				_loadedMonths.Add(currDate.Month.ToString());
-			}
-
-			calendar.MoveToDate = e.args.CurrentValue;
-		}
-
 
 		public async Task<bool> GetData(string start, string end)
 		{
@@ -169,7 +151,7 @@ namespace FlyLUCK
 					var flightobj = JsonConvert.DeserializeObject<List<Flight>>(_flightdata);
 					foreach (Flight f in flightobj)
 					{
-						CalendarInlineEvent ev = new CalendarInlineEvent();
+						//CalendarInlineEvent ev = new CalendarInlineEvent();
 						string from = f.FROMCITY;
 						string to = f.TOCITY;
 						if (from.Length > 10)
@@ -177,11 +159,11 @@ namespace FlyLUCK
 						if (to.Length > 10)
 							to = to.Substring(0, 10) + "...";
 						
-						ev.Subject = from + " - " + to;
+						/*ev.Subject = from + " - " + to;
 						ev.StartTime = Convert.ToDateTime(f.LOCALLEAVE);
 						ev.EndTime = Convert.ToDateTime(f.LOCALARRIVE);
 						ev.Color = Color.FromHex("68A0ED");
-						col.Add(ev);
+						col.Add(ev);*/
 					}
 				}
 				//next, get holds
@@ -193,15 +175,15 @@ namespace FlyLUCK
 					var holdobj = JsonConvert.DeserializeObject<List<Hold>>(_holddata);
 					foreach (Hold h in holdobj)
 					{
-						CalendarInlineEvent ev = new CalendarInlineEvent();
+						/*CalendarInlineEvent ev = new CalendarInlineEvent();
 						ev.Subject = "HOLD";
 						ev.StartTime = Convert.ToDateTime(h.LEGLOCALDATE);
 						ev.EndTime = Convert.ToDateTime(h.LEGLOCALDATE).AddHours(12);
 						ev.Color = Color.FromHex("6AED68");
-						col.Add(ev);
+						col.Add(ev);*/
 					}
 				}
-				/*response = await client.GetAsync(mxUrl);
+				response = await client.GetAsync(mxUrl);
 				if (response.IsSuccessStatusCode)
 				{
 					responseContent = response.Content;
@@ -209,21 +191,21 @@ namespace FlyLUCK
 					var mxobj = JsonConvert.DeserializeObject<List<Maint>>(_mxdata);
 					foreach (Maint m in mxobj)
 					{
-						CalendarInlineEvent ev = new CalendarInlineEvent();
+						/*CalendarInlineEvent ev = new CalendarInlineEvent();
 						ev.Subject = "MAINTENANCE";
 						ev.StartTime = Convert.ToDateTime(m.LEGLOCALDATE);
 						ev.EndTime = Convert.ToDateTime(m.LEGLOCALDATE).AddHours(24);
 						ev.Color = Color.FromHex("FF8033");
-						col.Add(ev);
+						col.Add(ev);*/
 					}
-				}*/
+				}
 				if (Device.OS == TargetPlatform.Android)
 				{
-					layout.Children.Remove(calendar);
-					layout.Children.Add(calendar);
+					//layout.Children.Remove(calendar);
+					//layout.Children.Add(calendar);
 
 				}
-				calendar.DataSource = col;
+				//calendar.DataSource = col;
 				vm.IsLoading = false;
 				return true;
 			}
@@ -258,12 +240,12 @@ namespace FlyLUCK
 							var flightobj = JsonConvert.DeserializeObject<List<Flight>>(_flightdata);
 							foreach (Flight f in flightobj)
 							{
-								CalendarInlineEvent ev = new CalendarInlineEvent();
+								/*CalendarInlineEvent ev = new CalendarInlineEvent();
 								ev.Subject = f.ORIGIN + "-" + f.DEST;
 								ev.StartTime = Convert.ToDateTime(f.LOCALLEAVE);
 								ev.EndTime = Convert.ToDateTime(f.LOCALARRIVE);
 								ev.Color = Color.FromHex("68A0ED");
-								col.Add(ev);
+								col.Add(ev);*/
 							}
 							break;
 						case 2:
@@ -271,12 +253,12 @@ namespace FlyLUCK
 							var holdobj = JsonConvert.DeserializeObject<List<Hold>>(_holddata);
 							foreach (Hold h in holdobj)
 							{
-								CalendarInlineEvent ev = new CalendarInlineEvent();
+								/*CalendarInlineEvent ev = new CalendarInlineEvent();
 								ev.Subject = "HOLD";
 								ev.StartTime = Convert.ToDateTime(h.LEGLOCALDATE);
 								ev.EndTime = Convert.ToDateTime(h.LEGLOCALDATE).AddHours(12);
 								ev.Color = Color.FromHex("6AED68");
-								col.Add(ev);
+								col.Add(ev);*/
 							}
 							break;
 						case 3:
@@ -284,19 +266,19 @@ namespace FlyLUCK
 							var mxobj = JsonConvert.DeserializeObject<List<Maint>>(_mxdata);
 							foreach (Maint m in mxobj)
 							{
-								CalendarInlineEvent ev = new CalendarInlineEvent();
+								/*CalendarInlineEvent ev = new CalendarInlineEvent();
 								ev.Subject = "MAINTENANCE";
 								ev.StartTime = Convert.ToDateTime(m.LEGLOCALDATE);
 								ev.EndTime = Convert.ToDateTime(m.LEGLOCALDATE).AddHours(12);
 								ev.Color = Color.FromHex("FF8033");
-								col.Add(ev);
+								col.Add(ev);*/
 							}
 							break;
 						default:
 							break;
 					}
 
-					calendar.DataSource = col;
+					//calendar.DataSource = col;
 					//indicator.IsRunning = false;
 					vm.IsLoading = false;
 					return "success";

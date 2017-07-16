@@ -32,7 +32,7 @@ namespace FlyLUCK.Helpers
 		private static readonly bool FlightCrewDefault = false;
 
 		private const string PaxIDKey = "paxid_key";
-		private static readonly string PaxIDDefault = "2";
+		private static readonly string PaxIDDefault = string.Empty;
 
 		private const string AccessTokenKey = "accesstoken_key";
 		private static readonly string AccessTokenDefault = string.Empty;

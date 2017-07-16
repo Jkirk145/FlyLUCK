@@ -35,13 +35,13 @@
 	<string>Assets.xcassets/AppIcons.appiconset</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.luckcompanies.flyluck</string>
-	<key>CFBundleShortVersionString</key>
-	<string>0.9</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Photo Library Access Warning</string>
 	<key>UIRequiresPersistentWiFi</key>
 	<true/>
+	<key>CFBundleShortVersionString</key>
+	<string>1.1</string>
 	<key>CFBundleVersion</key>
-	<string>8.4</string>
+	<string>1</string>
 </dict>
 </plist>
