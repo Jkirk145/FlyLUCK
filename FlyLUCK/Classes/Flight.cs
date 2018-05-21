@@ -26,6 +26,7 @@ namespace FlyLUCK
 		public string FBOSTATE { get; set; }
 		public string FBOPHONE { get; set; }
 		public string FBOZIP { get; set; }
+		public string NUMPAX { get; set; }
 		public Flight() { }
 
 	}

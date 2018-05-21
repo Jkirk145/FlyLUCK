@@ -17,10 +17,24 @@
                  AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
 
 	       		<ActivityIndicator IsRunning="{Binding IsLoading}"/>
-
+	       		 
 	       		<Label Text="Loading..." HorizontalOptions="Center" TextColor="White"/>
 
+
 	     	</StackLayout>
+
+	     		<Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5, 0.8, 0.7, 0.15" >
+	       			<Grid.RowDefinitions></Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="50" />
+					</Grid.ColumnDefinitions>
+					<Label Text="" BackgroundColor="#42a1ff" Grid.Row="0" Grid.Column="0" />
+					<Label Text="" BackgroundColor="#00FF7F" Grid.Row="1" Grid.Column="0" />
+					<Label Text="" BackgroundColor="#FF4500" Grid.Row="2" Grid.Column="0" />
+					<Label Text="Aircraft Reserved" Grid.Row="0" Grid.Column="1" />
+					<Label Text="Aircraft Held" Grid.Row="1" Grid.Column="1" />
+					<Label Text="Aircraft Maintenance" Grid.Row="2" Grid.Column="1" />
+				</Grid>
 
 			<Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,1,0.7,0.1" x:Name="buttonbar">
 				<Grid.RowDefinitions>

@@ -40,7 +40,6 @@ namespace FlyLUCK
 				var userName = authResult.UserInfo.GivenName + " " + authResult.UserInfo.FamilyName;
 				Helpers.Settings.UserName = userName;
 
-
 				Helpers.Settings.UserID = authResult.UserInfo.DisplayableId;
 
 				Helpers.Settings.AccessToken = authResult.AccessToken;

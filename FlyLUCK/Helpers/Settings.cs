@@ -50,11 +50,12 @@ namespace FlyLUCK.Helpers
 		{
 			get
 			{
-				return AppSettings.GetValueOrDefault<DateTime>(SessionExpiresKey, SessionExpiresDefault);
+				//return AppSettings.GetValueOrDefault<DateTime>(SessionExpiresKey, SessionExpiresDefault);
+				return AppSettings.GetValueOrDefault(SessionExpiresKey, SessionExpiresDefault);
 			}
 			set
 			{
-				AppSettings.AddOrUpdateValue<DateTime>(SessionExpiresKey, value);
+				AppSettings.AddOrUpdateValue(SessionExpiresKey, value);
 			}
 		}
 
@@ -62,11 +63,11 @@ namespace FlyLUCK.Helpers
 		{
 			get
 			{
-				return AppSettings.GetValueOrDefault<string>(AccessTokenKey, AccessTokenDefault);
+				return AppSettings.GetValueOrDefault(AccessTokenKey, AccessTokenDefault);
 			}
 			set 
 			{
-				AppSettings.AddOrUpdateValue<string>(AccessTokenKey, value);
+				AppSettings.AddOrUpdateValue(AccessTokenKey, value);
 			}
 		}
 
@@ -74,11 +75,11 @@ namespace FlyLUCK.Helpers
 		{
 			get
 			{
-				return AppSettings.GetValueOrDefault<string>(UserNameKey, UserNameDefault);
+				return AppSettings.GetValueOrDefault(UserNameKey, UserNameDefault);
 			}
 			set
 			{
-				AppSettings.AddOrUpdateValue<string>(UserNameKey, value);
+				AppSettings.AddOrUpdateValue(UserNameKey, value);
 			}
 		}
 
@@ -86,11 +87,11 @@ namespace FlyLUCK.Helpers
 	    {
 	      get
 	      {
-	        return AppSettings.GetValueOrDefault<string>(UserIDKey, UserIDDefault);
+	        return AppSettings.GetValueOrDefault(UserIDKey, UserIDDefault);
 	      }
 	      set
 	      {
-	        AppSettings.AddOrUpdateValue<string>(UserIDKey, value);
+	        AppSettings.AddOrUpdateValue(UserIDKey, value);
 	      }
 	    }
 
@@ -98,11 +99,11 @@ namespace FlyLUCK.Helpers
 		{
 			get
 			{
-				return AppSettings.GetValueOrDefault<bool>(FlightCrewKey, FlightCrewDefault);
+				return AppSettings.GetValueOrDefault(FlightCrewKey, FlightCrewDefault);
 			}
 			set
 			{
-				AppSettings.AddOrUpdateValue<bool>(FlightCrewKey, value);
+				AppSettings.AddOrUpdateValue(FlightCrewKey, value);
 			}
 		}
 
@@ -110,11 +111,11 @@ namespace FlyLUCK.Helpers
 		{
 			get
 			{
-				return AppSettings.GetValueOrDefault<bool>(AdminKey, AdminDefault);
+				return AppSettings.GetValueOrDefault(AdminKey, AdminDefault);
 			}
 			set
 			{
-				AppSettings.AddOrUpdateValue<bool>(AdminKey, value);
+				AppSettings.AddOrUpdateValue(AdminKey, value);
 			}
 		}
 
@@ -122,11 +123,11 @@ namespace FlyLUCK.Helpers
 		{
 			get
 			{
-				return AppSettings.GetValueOrDefault<string>(PaxIDKey, PaxIDDefault);
+				return AppSettings.GetValueOrDefault(PaxIDKey, PaxIDDefault);
 			}
 			set
 			{
-				AppSettings.AddOrUpdateValue<string>(PaxIDKey, value);
+				AppSettings.AddOrUpdateValue(PaxIDKey, value);
 			}
 		}
 
